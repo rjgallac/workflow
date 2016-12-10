@@ -19,5 +19,20 @@
     <td>{{application.status}}</td>
 </tr>
 </table>
+
+<h2>Jobs</h2>
+<table>
+    <tr><th>job name</th></tr>
+    <tr ng-repeat="job in jobs">
+        <td>{{job.name}}</td>
+    </tr>
+</table>
+<h2>Applicants</h2>
+<table>
+    <tr><th>applicant name</th></tr>
+    <tr ng-repeat="applicant in applicants">
+        <td>{{applicant.name}}</td>
+    </tr>
+</table>
 </body>
 </html>
