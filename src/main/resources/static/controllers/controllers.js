@@ -3,7 +3,7 @@ angular.module('workflowApp')
         applications = [];
         jobs = [];
         applicants = [];
-
+        applicantDto = {};
         applicationService.getApplications().then(function(data){
 //            $scope.applications = data;
             console.log(data);
@@ -32,4 +32,12 @@ angular.module('workflowApp')
             $scope.applicants = data;
             console.log(data);
         })
+
+        $scope.addApplicant = function(){
+            applicantService.addApplicant($scope.applicantDto).then(function(data){
+                console.log(data);
+                $scope.applicants.push(data);
+            });
+
+        }
     })

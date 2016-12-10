@@ -17,8 +17,8 @@ public class ApplicantService {
         return (List<Applicant>) applicantRepository.findAll();
     }
 
-    public void saveApplicant(Applicant applicant){
-        applicantRepository.save(applicant);
+    public Applicant saveApplicant(Applicant applicant){
+        return applicantRepository.save(applicant);
     }
 
     public void delete(long id) {

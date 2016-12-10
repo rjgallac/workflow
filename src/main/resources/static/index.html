@@ -28,6 +28,10 @@
         <td>{{job.name}}</td><td><a href ng-click="deleteJob($index)">delete</a></td>
     </tr>
 </table>
+<form>
+    name:<input type="text"/>
+    <input type="submit"/>
+</form>
 <h2>Applicants</h2>
 <table>
     <tr><th>applicant name</th></tr>
@@ -36,5 +40,9 @@
         <td><a href ng-click="deleteApplicant($index)">delete</a></td>
     </tr>
 </table>
+<form ng-submit="addApplicant()">
+    name:<input type="text" ng-model="applicantDto.name"/>
+    <input type="submit"/>
+</form>
 </body>
 </html>

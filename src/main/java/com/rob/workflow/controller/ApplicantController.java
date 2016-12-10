@@ -1,5 +1,7 @@
 package com.rob.workflow.controller;
 
+import com.rob.workflow.dto.ApplicantDto;
+import com.rob.workflow.mapper.ApplicantMapper;
 import com.rob.workflow.model.Applicant;
 import com.rob.workflow.service.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,9 @@ public class ApplicantController {
     private ApplicantService applicantService;
 
     @RequestMapping(value = "/applicant/", method = RequestMethod.POST)
-    public void saveApplicant(@RequestBody Applicant applicant){
-        applicantService.saveApplicant(applicant);
+    public ApplicantDto saveApplicant(@RequestBody Applicant applicant){
+        Applicant applicant1 = applicantService.saveApplicant(applicant);
+        return ApplicantMapper.toDto(applicant1);
     }
 
     @RequestMapping(value = "/applicant/", method = RequestMethod.GET)
