@@ -43,5 +43,7 @@ public class ApplicationServiceImpl implements ApplicationService{
         return applicationRepository.save(application);
     }
 
-
+    public void deleteOne(Long id){
+        applicationRepository.delete(id);
+    }
 }

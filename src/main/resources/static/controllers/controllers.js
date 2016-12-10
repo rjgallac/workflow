@@ -8,6 +8,12 @@ angular.module('workflowApp')
             $scope.applications = data;
             console.log(data);
         })
+
+        $scope.deleteApplication = function(index){
+            console.log(index);
+            applicationService.deleteApplication($scope.applications[index].applicationId);
+            $scope.applications.splice(index,1);
+        }
         jobService.getJobs().then(function(data){
             $scope.jobs = data;
             console.log(data);

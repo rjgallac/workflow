@@ -9,4 +9,5 @@ public interface ApplicationService {
     List<Application> getApplications();
     Application getApplication(Long id);
     Application save(Application application);
+    void deleteOne(Long id);
 }

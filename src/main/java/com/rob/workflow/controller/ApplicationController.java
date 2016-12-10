@@ -47,4 +47,9 @@ public class ApplicationController {
         applicationService.save(application);
     }
 
+    @RequestMapping(value = "/application/{id}", method = RequestMethod.DELETE)
+    public void deleteApplication(@PathVariable Long id){
+        applicationService.deleteOne(id);
+    }
+
 }
