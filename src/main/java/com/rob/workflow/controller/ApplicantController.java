@@ -28,4 +28,9 @@ public class ApplicantController {
     public void updateApplications(@PathVariable Long id){
     }
 
+    @RequestMapping(value = "/applicant/{id}", method = RequestMethod.DELETE)
+    public void deleteApplicant(@PathVariable long id){
+        applicantService.delete(id);
+    }
+
 }

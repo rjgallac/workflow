@@ -25,7 +25,7 @@
 <table>
     <tr><th>job name</th></tr>
     <tr ng-repeat="job in jobs">
-        <td>{{job.name}}</td>
+        <td>{{job.name}}</td><td><a href ng-click="deleteJob($index)">delete</a></td>
     </tr>
 </table>
 <h2>Applicants</h2>
@@ -33,6 +33,7 @@
     <tr><th>applicant name</th></tr>
     <tr ng-repeat="applicant in applicants">
         <td>{{applicant.name}}</td>
+        <td><a href ng-click="deleteApplicant($index)">delete</a></td>
     </tr>
 </table>
 </body>

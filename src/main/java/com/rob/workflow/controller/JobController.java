@@ -40,5 +40,8 @@ public class JobController {
     @RequestMapping(value = "/job/{id}", method = RequestMethod.PUT)
     public void updateJobs(@PathVariable Long id){
     }
-
+    @RequestMapping(value = "/job/{id}", method = RequestMethod.DELETE)
+    public void deleteJob(@PathVariable Long id){
+        jobService.delete(id);
+    }
 }

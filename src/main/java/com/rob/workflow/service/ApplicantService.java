@@ -20,4 +20,8 @@ public class ApplicantService {
     public void saveApplicant(Applicant applicant){
         applicantRepository.save(applicant);
     }
+
+    public void delete(long id) {
+        applicantRepository.delete(id);
+    }
 }
