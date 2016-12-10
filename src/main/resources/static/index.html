@@ -8,12 +8,15 @@
     <script src="controllers/controllers.js"></script>
 </head>
 <body  ng-controller="workflowCtrl">
-<h2>workflow</h2>
+<h1>workflow</h1>
+<h2>Applications</h2>
 <table>
+<tr><th>app name</th><th>job name</th><th>applicant name</th><th>status</th></tr>
 <tr ng-repeat="application in applications">
-    <td>
-        name:{{application.name}}
-    </td>
+    <td>{{application.name}}</td>
+    <td>{{application.jobDto.name}}</td>
+    <td>{{application.applicantDto.name}}</td>
+    <td>{{application.status}}</td>
 </tr>
 </table>
 </body>
