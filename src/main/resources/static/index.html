@@ -10,36 +10,49 @@
 <body  ng-controller="workflowCtrl">
 <h1>workflow</h1>
 <h2>Applications</h2>
-<table>
-<tr><th>app name</th><th>job name</th><th>applicant name</th><th>status</th></tr>
+<table border="1">
+<tr><th>app name</th><th>job name</th><th>applicant name</th><th>status</th><th>delete</th><th>action</th></tr>
 <tr ng-repeat="application in applications">
     <td>{{application.name}}</td>
     <td>{{application.jobDto.name}}</td>
     <td>{{application.applicantDto.name}}</td>
     <td>{{application.status}}</td>
     <td><a href ng-click="deleteApplication($index)">delete</a></td>
+    <td><a href ng-click="actionApplication($index)">action</a></td>
 </tr>
 </table>
-
+<h2>Add Application</h2>
+<form ng-submit="addApplication()">
+    name:<input type="text" ng-model="applicationDto.name"/>
+    job id:<input type="text" ng-model="applicationDto.job.id"/>
+    applicant id:<input type="text" ng-model="applicationDto.applicant.applicantId"/>
+    <input type="submit"/>
+</form>
+<hr />
 <h2>Jobs</h2>
-<table>
-    <tr><th>job name</th></tr>
+<table border="1">
+    <tr><th>id</th><th>job name</th><th>delete</th></tr>
     <tr ng-repeat="job in jobs">
+        <td>{{job.jobId}}</td>
         <td>{{job.name}}</td><td><a href ng-click="deleteJob($index)">delete</a></td>
     </tr>
 </table>
-<form>
+<h2>Add Job</h2>
+<form ng-submit="addJob()">
     name:<input type="text"/>
     <input type="submit"/>
 </form>
+<hr />
 <h2>Applicants</h2>
-<table>
-    <tr><th>applicant name</th></tr>
+<table border="1">
+    <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
     <tr ng-repeat="applicant in applicants">
+        <td>{{applicant.applicantId}}</td>
         <td>{{applicant.name}}</td>
         <td><a href ng-click="deleteApplicant($index)">delete</a></td>
     </tr>
 </table>
+<h2>Add Applicant</h2>
 <form ng-submit="addApplicant()">
     name:<input type="text" ng-model="applicantDto.name"/>
     <input type="submit"/>

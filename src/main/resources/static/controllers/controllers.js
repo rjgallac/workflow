@@ -5,7 +5,7 @@ angular.module('workflowApp')
         applicants = [];
         applicantDto = {};
         applicationService.getApplications().then(function(data){
-//            $scope.applications = data;
+            $scope.applications = data;
             console.log(data);
         })
 
