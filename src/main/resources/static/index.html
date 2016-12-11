@@ -12,7 +12,7 @@
     <hr/>
 </div>
 <div class="row">
-    <div class="small-2 large-8 columns">
+    <div class="small-2 large-9 columns">
         <h2>Applications</h2>
         <table border="1">
             <thead>
@@ -27,15 +27,15 @@
                     <td width="100">{{application.status}}</td>
                     <td><a href class="button" ng-click="deleteApplication($index)">delete</a></td>
                     <td>
-                        <a href class="button" ng-click="updateApplication($index, 'accept')">accept</a>
-                        <a href class="button" ng-click="updateApplication($index, 'reject')">reject</a>
-                        <a href class="button" ng-click="updateApplication($index, 'withdraw')">withdraw</a>
+                        <span ng-repeat="status in application.validStatuses">
+                            <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
+                        </span>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="small-2 large-4 columns">
+    <div class="small-2 large-3 columns">
         <h3>Add Application</h3>
         <form ng-submit="addApplication()">
             name:<input type="text" ng-model="application.name"/>
@@ -47,7 +47,7 @@
 </div>
 <hr />
 <div class="row">
-    <div class="small-2 large-6 columns">
+    <div class="small-2 large-9 columns">
         <h2>Jobs</h2>
         <table border="1">
             <tr><th>id</th><th>job name</th><th>delete</th></tr>
@@ -57,7 +57,7 @@
             </tr>
         </table>
     </div>
-    <div class="small-2 large-4 columns">
+    <div class="small-2 large-3 columns">
         <h3>Add Job</h3>
         <form ng-submit="addJob()">
             name:<input type="text" ng-model="jobDto.name"/>
@@ -67,7 +67,7 @@
 </div>
 <hr />
 <div class="row">
-    <div class="small-2 large-4 columns">
+    <div class="small-2 large-9 columns">
         <h2>Applicants</h2>
         <table border="1">
             <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
@@ -78,7 +78,7 @@
             </tr>
         </table>
     </div>
-    <div class="small-2 large-4 columns">
+    <div class="small-2 large-3 columns">
         <h3>Add Applicant</h3>
         <form ng-submit="addApplicant()">
             name:<input type="text" ng-model="applicantDto.name"/>

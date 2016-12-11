@@ -43,4 +43,7 @@ public class Rejected implements State {
             e.printStackTrace();
         }
     }
+    public String[] getValidStatuses(){
+        return new String[]{};
+    }
 }

@@ -31,4 +31,8 @@ public class SlowStartState implements State {
     public void reject(WorkflowState workflowState) {
         workflowState.setState(new Rejected());
     }
+
+    public String[] getValidStatuses(){
+        return new String[]{"accept", "reject", "withdraw"};
+    }
 }

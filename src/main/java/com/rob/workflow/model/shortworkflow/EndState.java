@@ -41,4 +41,8 @@ public class EndState implements State {
     public String getStatusReadble() {
         return statusReadble;
     }
+
+    public String[] getValidStatuses(){
+        return new String[]{};
+    }
 }

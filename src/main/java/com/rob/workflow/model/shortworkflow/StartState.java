@@ -21,6 +21,11 @@ public class StartState implements State {
     public String getStatusReadble() {
         return statusReadble;
     }
+
+    public String[] getValidStatuses(){
+        return new String[]{"accept", "reject", "withdraw"};
+    }
+
     @Override
     public void withdraw(WorkflowState workflowState) {
         workflowState.setState(new Withdrawn());

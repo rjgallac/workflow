@@ -16,13 +16,16 @@ public class ApplicationDto {
 
     private String updateAction;
 
-    public ApplicationDto(Long applicationId, String name, ApplicantDto applicantDto, JobDto jobDto, String status, String startState) {
+    private String[] validStatuses;
+
+    public ApplicationDto(Long applicationId, String name, ApplicantDto applicantDto, JobDto jobDto, String status, String startState, String[] statuses) {
         this.applicationId = applicationId;
         this.name = name;
         this.applicantDto = applicantDto;
         this.jobDto = jobDto;
         this.status = status;
         this.startState = startState;
+        this.validStatuses = statuses;
     }
 
     public String getStartState() {
@@ -63,5 +66,9 @@ public class ApplicationDto {
 
     public void setUpdateAction(String updateAction) {
         this.updateAction = updateAction;
+    }
+
+    public String[] getValidStatuses() {
+        return validStatuses;
     }
 }

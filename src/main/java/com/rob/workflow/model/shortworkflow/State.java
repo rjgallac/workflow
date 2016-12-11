@@ -6,4 +6,5 @@ public interface State {
     void withdraw(WorkflowState workflowState);
     void reject(WorkflowState workflowState);
     String getStatusReadble();
+    String[] getValidStatuses();
 }
