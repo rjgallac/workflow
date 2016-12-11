@@ -12,6 +12,17 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+        this.addApplication = function(data) {
+            var defer = $q.defer();
+            $http.post('/application/', data)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
         this.deleteApplication = function(id){
             var defer = $q.defer();
             $http.delete('/application/'+id)
@@ -51,6 +62,17 @@ angular.module('workflowApp')
         this.deleteJob = function(id) {
             var defer = $q.defer();
             $http.delete('/job/'+id)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
+        this.addJob = function(data) {
+            var defer = $q.defer();
+            $http.post('/job/', data)
                 .success(function(data) {
                     defer.resolve(data);
                 })

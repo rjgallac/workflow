@@ -41,7 +41,7 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.PUT)
-    public void updateApplications(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
+    public ResponseEntity<ApplicationDto> updateApplications(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
         Application application = applicationService.getApplication(id);
         //invoker action dynamically.
         if(applicationDto.getUpdateAction() != null){
@@ -51,10 +51,10 @@ public class ApplicationController {
                 application.reject();
             if(applicationDto.getUpdateAction().equals("withdraw"))
                 application.withdraw();
-
-
         }
-        applicationService.save(application);
+        Application save = applicationService.save(application);
+        ApplicationDto applicationDto1 = ApplicationMapper.toDto(save);
+        return new ResponseEntity<>(applicationDto1, null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.DELETE)

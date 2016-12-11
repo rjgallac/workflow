@@ -5,6 +5,8 @@ import com.rob.workflow.mapper.JobMapper;
 import com.rob.workflow.model.Job;
 import com.rob.workflow.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,11 +19,11 @@ public class JobController {
     private JobService jobService;
 
     @RequestMapping(value = "/job/", method = RequestMethod.POST)
-    public JobDto saveJob(@RequestBody JobDto jobDto){
+    public ResponseEntity<JobDto> saveJob(@RequestBody JobDto jobDto){
         Job job = JobMapper.toEntity(jobDto);
         Job job1 = jobService.saveJob(job);
         JobDto jobDto1 = JobMapper.toDto(job1);
-        return jobDto1;
+        return new ResponseEntity(jobDto1, null, HttpStatus.OK);
 
     }
 

@@ -3,11 +3,21 @@ angular.module('workflowApp')
         applications = [];
         jobs = [];
         applicants = [];
+        $scope.application = {};
+        $scope.application.startState = "normal";
         applicantDto = {};
+        jobDto = {};
         applicationService.getApplications().then(function(data){
             $scope.applications = data;
             console.log(data);
         })
+
+        $scope.addApplication = function(){
+            console.log($scope.application);
+            applicationService.addApplication($scope.application).then(function(data){
+                $scope.applications.push(data);
+            });
+        }
 
         $scope.deleteApplication = function(index){
             console.log(index);
@@ -20,16 +30,11 @@ angular.module('workflowApp')
             $scope.applications[index].updateAction = action;
             console.log($scope.applications[index]);
             applicationService.updateApplication($scope.applications[index]).then(function(data){
-
+                $scope.applications[index] = data;
             })
         }
 
 
-        $scope.deleteJob = function(index){
-            console.log(index);
-            jobService.deleteJob($scope.jobs[index].jobId);
-            $scope.jobs.splice(index,1);
-        }
         $scope.deleteApplicant = function(index){
             console.log(index);
             applicantService.deleteApplicant($scope.applicants[index].applicantId);
@@ -39,6 +44,18 @@ angular.module('workflowApp')
             $scope.jobs = data;
             console.log(data);
         })
+
+        $scope.deleteJob = function(index){
+            console.log(index);
+            jobService.deleteJob($scope.jobs[index].jobId);
+            $scope.jobs.splice(index,1);
+        }
+        $scope.addJob = function(){
+            console.log("adding job");
+            jobService.addJob($scope.jobDto).then(function(data){
+                $scope.jobs.push(data);
+            })
+        }
         applicantService.getApplicants().then(function(data){
             $scope.applicants = data;
             console.log(data);
