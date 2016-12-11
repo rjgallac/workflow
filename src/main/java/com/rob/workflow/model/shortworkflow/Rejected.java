@@ -1,12 +1,16 @@
 package com.rob.workflow.model.shortworkflow;
 
-public class StartState implements State {
+public class Rejected implements State {
 
-    private static final String statusReadble = "Start";
+    private static final String statusReadble = "Rejected";
 
     @Override
     public void next(WorkflowState workflowState) {
-        workflowState.setState(new Stage1State());
+        try {
+            throw new StateException();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -21,13 +25,22 @@ public class StartState implements State {
     public String getStatusReadble() {
         return statusReadble;
     }
+
     @Override
     public void withdraw(WorkflowState workflowState) {
-        workflowState.setState(new Withdrawn());
+        try {
+            throw new StateException();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void reject(WorkflowState workflowState) {
-        workflowState.setState(new Rejected());
+        try {
+            throw new StateException();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 }

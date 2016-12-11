@@ -44,6 +44,7 @@ public class ApplicationController {
     public ResponseEntity<ApplicationDto> updateApplications(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
         Application application = applicationService.getApplication(id);
         //invoker action dynamically.
+        application.restoreState();
         if(applicationDto.getUpdateAction() != null){
             if(applicationDto.getUpdateAction().equals("accept"))
                 application.next();
@@ -52,6 +53,7 @@ public class ApplicationController {
             if(applicationDto.getUpdateAction().equals("withdraw"))
                 application.withdraw();
         }
+        application.setStateString();
         Application save = applicationService.save(application);
         ApplicationDto applicationDto1 = ApplicationMapper.toDto(save);
         return new ResponseEntity<>(applicationDto1, null, HttpStatus.OK);

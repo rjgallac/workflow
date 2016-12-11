@@ -35,11 +35,10 @@ public class WorkflowState {
     }
 
     public void withdraw() {
-        System.out.println("WITHDRAWN");
+        state.withdraw(this);
     }
 
     public void reject() {
-        System.out.println("REJECTED");
-
+        state.reject(this);
     }
 }

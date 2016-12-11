@@ -1,66 +1,97 @@
 <html ng-app="workflowApp">
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="services/services.js"></script>
-    <script src="controllers/controllers.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
 </head>
-<body  ng-controller="workflowCtrl">
-<h1>workflow</h1>
-<h2>Applications</h2>
-<table border="1">
-<tr><th>id</th><th>app name</th><th>job name</th><th>applicant name</th><th>status</th><th>delete</th><th>action</th></tr>
-<tr ng-repeat="application in applications">
-    <td>{{application.applicationId}}</td>
-    <td>{{application.name}}</td>
-    <td>{{application.jobDto.name}}</td>
-    <td>{{application.applicantDto.name}}</td>
-    <td>{{application.status}}</td>
-    <td><a href ng-click="deleteApplication($index)">delete</a></td>
-    <td>
-        <a href ng-click="updateApplication($index, 'accept')">accept</a>
-        <a href ng-click="updateApplication($index, 'reject')">reject</a>
-        <a href ng-click="updateApplication($index, 'withdraw')">withdraw</a>
-    </td>
-</tr>
-</table>
-<h3>Add Application</h3>
-<form ng-submit="addApplication()">
-    name:<input type="text" ng-model="application.name"/>
-    job id:<input type="text" ng-model="application.jobDto.jobId"/>
-    applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>
-    <input type="submit"/>
-</form>
+<body  class="container" ng-controller="workflowCtrl">
+<div class="row">
+    <h1>Workflow</h1>
+    <hr/>
+</div>
+<div class="row">
+    <div class="small-2 large-8 columns">
+        <h2>Applications</h2>
+        <table border="1">
+            <thead>
+                <tr><th>id</th><th>app name</th><th>job name</th><th>applicant name</th><th width="100">status</th><th>delete</th><th>action</th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="application in applications">
+                    <td>{{application.applicationId}}</td>
+                    <td>{{application.name}}</td>
+                    <td>{{application.jobDto.name}}</td>
+                    <td>{{application.applicantDto.name}}</td>
+                    <td width="100">{{application.status}}</td>
+                    <td><a href class="button" ng-click="deleteApplication($index)">delete</a></td>
+                    <td>
+                        <a href class="button" ng-click="updateApplication($index, 'accept')">accept</a>
+                        <a href class="button" ng-click="updateApplication($index, 'reject')">reject</a>
+                        <a href class="button" ng-click="updateApplication($index, 'withdraw')">withdraw</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="small-2 large-4 columns">
+        <h3>Add Application</h3>
+        <form ng-submit="addApplication()">
+            name:<input type="text" ng-model="application.name"/>
+            job id:<input type="text" ng-model="application.jobDto.jobId"/>
+            applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>
+            <input  class="button" type="submit"/>
+        </form>
+    </div>
+</div>
 <hr />
-<h2>Jobs</h2>
-<table border="1">
-    <tr><th>id</th><th>job name</th><th>delete</th></tr>
-    <tr ng-repeat="job in jobs">
-        <td>{{job.jobId}}</td>
-        <td>{{job.name}}</td><td><a href ng-click="deleteJob($index)">delete</a></td>
-    </tr>
-</table>
-<h3>Add Job</h3>
-<form ng-submit="addJob()">
-    name:<input type="text" ng-model="jobDto.name"/>
-    <input type="submit"/>
-</form>
+<div class="row">
+    <div class="small-2 large-6 columns">
+        <h2>Jobs</h2>
+        <table border="1">
+            <tr><th>id</th><th>job name</th><th>delete</th></tr>
+            <tr ng-repeat="job in jobs">
+                <td>{{job.jobId}}</td>
+                <td>{{job.name}}</td><td><a class="button" href ng-click="deleteJob($index)">delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="small-2 large-4 columns">
+        <h3>Add Job</h3>
+        <form ng-submit="addJob()">
+            name:<input type="text" ng-model="jobDto.name"/>
+            <input type="submit" class="button"/>
+        </form>
+    </div>
+</div>
 <hr />
-<h2>Applicants</h2>
-<table border="1">
-    <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
-    <tr ng-repeat="applicant in applicants">
-        <td>{{applicant.applicantId}}</td>
-        <td>{{applicant.name}}</td>
-        <td><a href ng-click="deleteApplicant($index)">delete</a></td>
-    </tr>
-</table>
-<h3>Add Applicant</h3>
-<form ng-submit="addApplicant()">
-    name:<input type="text" ng-model="applicantDto.name"/>
-    <input type="submit"/>
-</form>
+<div class="row">
+    <div class="small-2 large-4 columns">
+        <h2>Applicants</h2>
+        <table border="1">
+            <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
+            <tr ng-repeat="applicant in applicants">
+                <td>{{applicant.applicantId}}</td>
+                <td>{{applicant.name}}</td>
+                <td><a href class="button" ng-click="deleteApplicant($index)">delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="small-2 large-4 columns">
+        <h3>Add Applicant</h3>
+        <form ng-submit="addApplicant()">
+            name:<input type="text" ng-model="applicantDto.name"/>
+            <input class="button" type="submit"/>
+        </form>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="services/services.js"></script>
+<script src="controllers/controllers.js"></script>
+
 </body>
 </html>

@@ -102,6 +102,10 @@ public class Application {
         this.workflowStateString = workflowState.getState().getClass().getName();
     }
 
+    public void setStateString(){
+        this.workflowStateString = workflowState.getState().getClass().getName();
+    }
+
     public String getWorkflowStateString() {
         return workflowStateString;
     }
@@ -120,5 +124,10 @@ public class Application {
 
     public void reject() {
         this.workflowState.reject();
+    }
+
+    public void restoreState(){
+        this.workflowState = new WorkflowState();
+        this.getWorkflowState().setStateFromDB(this.getWorkflowStateString());
     }
 }

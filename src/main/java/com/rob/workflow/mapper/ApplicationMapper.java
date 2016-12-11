@@ -17,6 +17,7 @@ public class ApplicationMapper {
     public static ApplicationDto toDto(Application application) {
         JobDto jobDto = JobMapper.toDto(application.getJob());
         ApplicantDto applicantDto = ApplicantMapper.toDto(application.getApplicant());
-        return new ApplicationDto(application.getApplicationId(), application.getName(), applicantDto, jobDto, application.getWorkflowStateString(), null);
+        application.restoreState();
+        return new ApplicationDto(application.getApplicationId(), application.getName(), applicantDto, jobDto, application.getWorkflowState().getState().getStatusReadble(), null);
     }
 }
