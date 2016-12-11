@@ -92,14 +92,7 @@ public class Application {
     }
 
     public void next(){
-        if(workflowStateString != null){
-            workflowState = new WorkflowState();
-            workflowState.setStateFromDB(this.getWorkflowStateString());
-            workflowState.next();
-        }else {
-            this.workflowState.setState(new StartState());
-        }
-        this.workflowStateString = workflowState.getState().getClass().getName();
+        workflowState.next();
     }
 
     public void setStateString(){

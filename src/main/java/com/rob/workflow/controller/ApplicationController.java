@@ -9,9 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.rob.workflow.mapper.ApplicationMapper.toDto;
+import static com.rob.workflow.mapper.ApplicationMapper.toEntity;
 
 @RestController
 public class ApplicationController {
@@ -25,19 +27,13 @@ public class ApplicationController {
 
     @RequestMapping(value = "/application/", method = RequestMethod.POST)
     public ResponseEntity<ApplicationDto> saveApplication(@RequestBody ApplicationDto applicationDto){
-        Application application1 = ApplicationMapper.toEntity(applicationDto);
-//        application1.next();
-        Application application = applicationService.createApplication(application1);
-        ApplicationDto applicationDtoSaved = ApplicationMapper.toDto(application);
-        return new ResponseEntity<>(applicationDtoSaved, null, HttpStatus.OK);
+        Application application = applicationService.createApplication(toEntity(applicationDto));
+        return new ResponseEntity<>(toDto(application), null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/application/", method = RequestMethod.GET)
     public List<ApplicationDto> getApplications(){
-        List<ApplicationDto> applicationDtos = new ArrayList<>();
-        List<Application> applications = applicationService.getApplications();
-        applicationDtos.addAll(applications.stream().map(ApplicationMapper::toDto).collect(Collectors.toList()));
-        return applicationDtos;
+        return applicationService.getApplications().stream().map(ApplicationMapper::toDto).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.PUT)
@@ -55,7 +51,7 @@ public class ApplicationController {
         }
         application.setStateString();
         Application save = applicationService.save(application);
-        ApplicationDto applicationDto1 = ApplicationMapper.toDto(save);
+        ApplicationDto applicationDto1 = toDto(save);
         return new ResponseEntity<>(applicationDto1, null, HttpStatus.OK);
     }
 
