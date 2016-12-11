@@ -14,6 +14,8 @@ public class ApplicationDto {
 
     private String startState;
 
+    private String updateAction;
+
     public ApplicationDto(Long applicationId, String name, ApplicantDto applicantDto, JobDto jobDto, String status, String startState) {
         this.applicationId = applicationId;
         this.name = name;
@@ -53,5 +55,13 @@ public class ApplicationDto {
 
     public long getApplicationId() {
         return applicationId;
+    }
+
+    public String getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(String updateAction) {
+        this.updateAction = updateAction;
     }
 }

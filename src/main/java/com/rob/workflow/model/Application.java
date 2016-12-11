@@ -1,11 +1,11 @@
 package com.rob.workflow.model;
 
 import com.rob.workflow.model.shortworkflow.SlowStartState;
-import com.rob.workflow.model.shortworkflow.WorkflowState;
 import com.rob.workflow.model.shortworkflow.StartState;
 import com.rob.workflow.model.shortworkflow.State;
+import com.rob.workflow.model.shortworkflow.WorkflowState;
+
 import javax.persistence.*;
-import java.lang.reflect.InvocationTargetException;
 
 @Table(name = "application")
 @Entity
@@ -112,5 +112,13 @@ public class Application {
 
     public void setWorkflowState(WorkflowState workflowState) {
         this.workflowState = workflowState;
+    }
+
+    public void withdraw() {
+        this.workflowState.withdraw();
+    }
+
+    public void reject() {
+        this.workflowState.reject();
     }
 }

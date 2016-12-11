@@ -14,6 +14,17 @@ angular.module('workflowApp')
             applicationService.deleteApplication($scope.applications[index].applicationId);
             $scope.applications.splice(index,1);
         }
+
+        $scope.updateApplication = function(index, action){
+            console.log("udating"+index);
+            $scope.applications[index].updateAction = action;
+            console.log($scope.applications[index]);
+            applicationService.updateApplication($scope.applications[index]).then(function(data){
+
+            })
+        }
+
+
         $scope.deleteJob = function(index){
             console.log(index);
             jobService.deleteJob($scope.jobs[index].jobId);

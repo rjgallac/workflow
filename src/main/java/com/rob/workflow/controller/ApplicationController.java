@@ -41,9 +41,19 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.PUT)
-    public void updateApplications(@PathVariable Long id){
+    public void updateApplications(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
         Application application = applicationService.getApplication(id);
-        application.next();
+        //invoker action dynamically.
+        if(applicationDto.getUpdateAction() != null){
+            if(applicationDto.getUpdateAction().equals("accept"))
+                application.next();
+            if(applicationDto.getUpdateAction().equals("reject"))
+                application.reject();
+            if(applicationDto.getUpdateAction().equals("withdraw"))
+                application.withdraw();
+
+
+        }
         applicationService.save(application);
     }
 
