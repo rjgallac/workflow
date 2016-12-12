@@ -1,0 +1,7 @@
+<table border="1">
+    <tr><th>id</th><th>job name</th><th>delete</th></tr>
+    <tr ng-repeat="job in jobs">
+        <td>{{job.jobId}}</td>
+        <td>{{job.name}}</td><td><a class="button" href ng-click="deleteJob($index)">delete</a></td>
+    </tr>
+</table>
