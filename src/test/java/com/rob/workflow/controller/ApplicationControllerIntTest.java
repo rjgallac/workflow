@@ -1,0 +1,41 @@
+package com.rob.workflow.controller;
+
+import com.rob.workflow.dto.JobDto;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static org.junit.Assert.assertEquals;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringJUnit4ClassRunner.class)
+public class ApplicationControllerIntTest {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+
+    @Test
+    public void saveApplication() throws Exception {
+        JobDto jobDto = new JobDto();
+        ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
+        assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
+    }
+
+    @Test
+    public void saveApplicationAndRetreive() throws Exception {
+        JobDto jobDto = new JobDto();
+        ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
+        ResponseEntity<JobDto> jobDtoResponseEntity2 = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
+        assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
+        ResponseEntity<JobDto[]> forEntity = this.restTemplate.getForEntity("/job/", JobDto[].class);
+        assertEquals(2, forEntity.getBody().length);
+    }
+
+
+}

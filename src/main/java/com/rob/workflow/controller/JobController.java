@@ -17,8 +17,12 @@ import static com.rob.workflow.mapper.JobMapper.toEntity;
 @RestController
 public class JobController {
 
-    @Autowired
     private JobService jobService;
+
+    @Autowired
+    public JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
 
     @RequestMapping(value = "/job/", method = RequestMethod.POST)
     public ResponseEntity<JobDto> saveJob(@RequestBody JobDto jobDto){
