@@ -34,7 +34,8 @@ public class Application {
     public Application() {
     }
 
-    public Application(String name, Job job, Applicant applicant, String startState) {
+    public Application(Long applicationId, String name, Job job, Applicant applicant, String startState) {
+        this.applicationId = applicationId;
         this.name = name;
         this.job = job;
         this.applicant = applicant;

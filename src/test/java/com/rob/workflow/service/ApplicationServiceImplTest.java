@@ -34,11 +34,13 @@ public class ApplicationServiceImplTest {
     public void testCreate(){
         Job job = new Job(1L, "test");
         Applicant applicant = new Applicant(1L, "test");
-        Application applicationIn = new Application("test", job, applicant, "test");
+        Application applicationIn = new Application(null, "test", job, applicant, "test");
 
         when(jobRepository.findOne(job.getJobId())).thenReturn(job);
+        when(applicantRepository.findOne(applicant.getApplicantId())).thenReturn(applicant);
+        when(applicationRepository.save(applicationIn)).thenReturn(applicationIn);
         Application application1 = applicationService.createApplication(applicationIn);
-
+        assertEquals("test", application1.getName());
 
 
     }

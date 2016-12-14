@@ -1,18 +1,18 @@
 package com.rob.workflow.dto;
 
 public class JobDto {
-    private long jobId;
+    private Long jobId;
     private String name;
 
     public JobDto() {
     }
 
-    public JobDto(long jobId, String name) {
+    public JobDto(Long jobId, String name) {
         this.jobId = jobId;
         this.name = name;
     }
 
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 

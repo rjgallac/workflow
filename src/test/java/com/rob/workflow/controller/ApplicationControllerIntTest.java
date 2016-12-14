@@ -1,5 +1,7 @@
 package com.rob.workflow.controller;
 
+import com.rob.workflow.dto.ApplicantDto;
+import com.rob.workflow.dto.ApplicationDto;
 import com.rob.workflow.dto.JobDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,19 +24,36 @@ public class ApplicationControllerIntTest {
 
     @Test
     public void saveApplication() throws Exception {
-        JobDto jobDto = new JobDto();
+        JobDto jobDto = new JobDto(null, "test");
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
-        assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
+
+        ApplicantDto applicantDto = new ApplicantDto(null, "test");
+        ResponseEntity<ApplicantDto> applicantDtoResponseEntity = this.restTemplate.postForEntity("/applicant/", applicantDto, ApplicantDto.class);
+
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDtoResponseEntity.getBody(), jobDtoResponseEntity.getBody(), "asd", "sdf", null);
+
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = this.restTemplate.postForEntity("/application/", applicationDto, ApplicationDto.class);
+        assertEquals(HttpStatus.OK, applicationDtoResponseEntity.getStatusCode());
     }
 
     @Test
     public void saveApplicationAndRetreive() throws Exception {
-        JobDto jobDto = new JobDto();
+        JobDto jobDto = new JobDto(null, "test");
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
-        ResponseEntity<JobDto> jobDtoResponseEntity2 = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
-        assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
-        ResponseEntity<JobDto[]> forEntity = this.restTemplate.getForEntity("/job/", JobDto[].class);
-        assertEquals(2, forEntity.getBody().length);
+
+        ApplicantDto applicantDto = new ApplicantDto(null, "test");
+        ResponseEntity<ApplicantDto> applicantDtoResponseEntity = this.restTemplate.postForEntity("/applicant/", applicantDto, ApplicantDto.class);
+
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDtoResponseEntity.getBody(), jobDtoResponseEntity.getBody(), "asd", "sdf", null);
+
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = this.restTemplate.postForEntity("/application/", applicationDto, ApplicationDto.class);
+        assertEquals(HttpStatus.OK, applicationDtoResponseEntity.getStatusCode());
+
+        ResponseEntity<ApplicationDto[]> forEntity = this.restTemplate.getForEntity("/application/", ApplicationDto[].class);
+
+        assertEquals(1, forEntity.getBody().length);
+
+
     }
 
 

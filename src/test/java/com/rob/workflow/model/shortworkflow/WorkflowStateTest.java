@@ -26,7 +26,7 @@ public class WorkflowStateTest {
         workflowState.setState(new SlowStartState());
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.SlowStartState");
         workflowState.next();
-        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage2State");
+        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage1State");
     }
 
     @Test
