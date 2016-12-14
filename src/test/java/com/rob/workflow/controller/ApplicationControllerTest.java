@@ -12,12 +12,15 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
+@Transactional
 public class ApplicationControllerTest {
 
     @Mock
@@ -44,7 +47,12 @@ public class ApplicationControllerTest {
 
     @Test
     public void updateApplications() throws Exception {
-
+//        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
+//        JobDto jobDto = new JobDto(1L, "test");
+//        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "", "", null);
+//        when(applicationService.createApplication(any(Application.class)));
+//        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+//        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
 
     @Test

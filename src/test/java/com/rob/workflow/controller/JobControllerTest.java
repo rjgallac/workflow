@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -42,6 +43,13 @@ public class JobControllerTest {
         when(jobService.getJobs()).thenReturn(jobsReturned);
         List<JobDto> jobs = jobController.getJobs();
         assertEquals(1, jobs.size());
+    }
+    @Test
+    public void getJob() throws Exception {
+        Job job = new Job(1L, "test");
+        when(jobService.getJob(1L)).thenReturn(Optional.of(job));
+        ResponseEntity<JobDto> job1 = jobController.getJob(1L);
+        assertEquals("test", job1.getBody().getName());
     }
 
     @Test

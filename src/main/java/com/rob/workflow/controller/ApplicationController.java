@@ -37,7 +37,7 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<ApplicationDto> updateApplications(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
+    public ResponseEntity<ApplicationDto> updateApplication(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
         Application application = applicationService.getApplication(id);
         //invoker action dynamically.
         application.restoreState();

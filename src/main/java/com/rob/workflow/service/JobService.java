@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobService {
@@ -23,5 +24,9 @@ public class JobService {
 
     public void delete(Long id) {
         jobRepository.delete(id);
+    }
+
+    public Optional<Job> getJob(Long id) {
+        return Optional.of(jobRepository.findOne(id));
     }
 }
