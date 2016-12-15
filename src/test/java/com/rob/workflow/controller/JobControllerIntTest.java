@@ -2,7 +2,6 @@ package com.rob.workflow.controller;
 
 import com.rob.workflow.dto.JobDto;
 import org.flywaydb.core.Flyway;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,13 +11,11 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
 public class JobControllerIntTest {
 
     @Autowired
@@ -28,18 +25,6 @@ public class JobControllerIntTest {
     public void setup(){
         flyway.clean();
         flyway.migrate();
-    }
-
-    @After
-    public void tearDown(){
-        flyway.clean();
-        flyway.migrate();
-
-    }
-
-    @Test
-    public void test(){
-        flyway.clean();
     }
 
     @Autowired
