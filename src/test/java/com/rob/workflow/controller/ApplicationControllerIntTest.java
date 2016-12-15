@@ -3,6 +3,9 @@ package com.rob.workflow.controller;
 import com.rob.workflow.dto.ApplicantDto;
 import com.rob.workflow.dto.ApplicationDto;
 import com.rob.workflow.dto.JobDto;
+import org.flywaydb.core.Flyway;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,21 @@ public class ApplicationControllerIntTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    Flyway flyway;
+
+    @Before
+    public void setup(){
+        flyway.clean();
+        flyway.migrate();
+
+    }
+
+    @After
+    public void tearDown(){
+        flyway.clean();
+
+    }
 
     @Test
     public void saveApplication() throws Exception {

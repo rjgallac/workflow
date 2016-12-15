@@ -1,6 +1,9 @@
 package com.rob.workflow.controller;
 
 import com.rob.workflow.dto.JobDto;
+import org.flywaydb.core.Flyway;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,28 @@ import static org.junit.Assert.assertEquals;
 public class JobControllerIntTest {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    Flyway flyway;
 
+    @Before
+    public void setup(){
+        flyway.clean();
+        flyway.migrate();
+    }
+
+    @After
+    public void tearDown(){
+        flyway.clean();
+        flyway.migrate();
+
+    }
+
+    @Test
+    public void test(){
+        flyway.clean();
+    }
+
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
     public void saveJob() throws Exception {
