@@ -16,12 +16,8 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ApplicantControllerIntTest {
 
-    private TestRestTemplate restTemplate;
-
     @Autowired
-    public ApplicantControllerIntTest(TestRestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    private TestRestTemplate restTemplate;
 
     @Test
     public void saveApplicant() throws Exception {
