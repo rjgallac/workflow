@@ -8,13 +8,16 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.doNothing;
@@ -40,10 +43,20 @@ public class JobControllerTest {
     public void getJobs() throws Exception {
         List<Job> jobsReturned = new ArrayList();
         jobsReturned.add(new Job(1L, "test"));
-        when(jobService.getJobs()).thenReturn(jobsReturned);
-        List<JobDto> jobs = jobController.getJobs();
-        assertEquals(1, jobs.size());
+        when(jobService.getJobs()).thenReturn(Optional.ofNullable(jobsReturned));
+        ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
+        assertEquals(1, jobs.getBody().size());
     }
+
+    @Test
+    public void getJobsNoneFound() throws Exception {
+        List<Job> jobsReturned = new ArrayList();
+        jobsReturned.add(new Job(1L, "test"));
+        when(jobService.getJobs()).thenReturn(Optional.empty());
+        ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
+        assertEquals(HttpStatus.NOT_FOUND, jobs.getStatusCode());
+    }
+
     @Test
     public void getJob() throws Exception {
         Job job = new Job(1L, "test");

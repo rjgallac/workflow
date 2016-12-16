@@ -8,9 +8,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -32,9 +35,9 @@ public class ApplicantControllerTest {
         ApplicantDto applicantDto = new ApplicantDto(null, "test");
         Applicant applicant = new Applicant(1L, "test");
         when(applicantService.saveApplicant(any(Applicant.class))).thenReturn(applicant);
-        ApplicantDto applicantDto1 = applicantController.saveApplicant(applicantDto);
+        ResponseEntity<ApplicantDto> applicantDto1 = applicantController.saveApplicant(applicantDto);
         Long one = 1L;
-        assertEquals(one, applicantDto1.getApplicantId());
+        assertEquals(one, applicantDto1.getBody().getApplicantId());
     }
 
     @Test
@@ -42,8 +45,25 @@ public class ApplicantControllerTest {
         List<Applicant> applicants = new ArrayList<>();
         applicants.add(new Applicant(1L, "test"));
         when(applicantService.getApplicants()).thenReturn(applicants);
-        List<ApplicantDto> returnedApplicants = applicantController.getApplicants();
-        assertEquals(1, returnedApplicants.size());
+        ResponseEntity<List<ApplicantDto>> returnedApplicants = applicantController.getApplicant();
+        assertEquals(1, returnedApplicants.getBody().size());
+    }
+    @Test
+    public void getApplicant() throws Exception {
+        List<Applicant> applicants = new ArrayList<>();
+        applicants.add(new Applicant(1L, "test"));
+        when(applicantService.getApplicant(1L)).thenReturn(Optional.of(new Applicant(1L, "test")));
+        ResponseEntity<ApplicantDto> applicant = applicantController.getApplicant(1L);
+        assertEquals(HttpStatus.OK, applicant.getStatusCode());
+    }
+
+    @Test
+    public void getApplicantNotFound() throws Exception {
+        List<Applicant> applicants = new ArrayList<>();
+        applicants.add(new Applicant(1L, "test"));
+        when(applicantService.getApplicant(1L)).thenReturn(Optional.empty());
+        ResponseEntity<ApplicantDto> applicant = applicantController.getApplicant(1L);
+        assertEquals(HttpStatus.NOT_FOUND, applicant.getStatusCode());
     }
 
     @Test

@@ -32,8 +32,13 @@ public class JobController {
     }
 
     @RequestMapping(value = "/job/", method = RequestMethod.GET)
-    public List<JobDto> getJobs(){
-        return jobService.getJobs().stream().map(JobMapper::toDto).collect(Collectors.toList());
+    public ResponseEntity<List<JobDto>> getJobs(){
+        Optional<List<Job>> jobs = jobService.getJobs();
+        if(jobs.isPresent()) {
+            return new ResponseEntity<>(jobs.get().stream().map(JobMapper::toDto).collect(Collectors.toList()), null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,null, HttpStatus.NOT_FOUND);
+        }
     }
     @RequestMapping(value = "/job/{id}", method = RequestMethod.GET)
     public ResponseEntity<JobDto> getJob(@PathVariable Long id){

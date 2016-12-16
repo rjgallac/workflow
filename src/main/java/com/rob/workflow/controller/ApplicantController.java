@@ -27,24 +27,25 @@ public class ApplicantController {
     }
 
     @RequestMapping(value = "/applicant/", method = RequestMethod.POST)
-    public ApplicantDto saveApplicant(@RequestBody ApplicantDto applicantDto){
-        return toDto(applicantService.saveApplicant(toEntity(applicantDto)));
+    public ResponseEntity<ApplicantDto> saveApplicant(@RequestBody ApplicantDto applicantDto){
+        return new ResponseEntity<>(toDto(applicantService.saveApplicant(toEntity(applicantDto))), null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/applicant/", method = RequestMethod.GET)
-    public List<ApplicantDto> getApplicants(){
-        return applicantService.getApplicants()
+    public ResponseEntity<List<ApplicantDto>> getApplicant(){
+        return new ResponseEntity<>(applicantService.getApplicants()
                 .stream()
                 .map(ApplicantMapper::toDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), null, HttpStatus.OK);
     }
+
     @RequestMapping(value = "/applicant/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ApplicantDto> getApplicants(@PathVariable Long id){
+    public ResponseEntity<ApplicantDto> getApplicant(@PathVariable Long id){
         Optional<Applicant> applicant = applicantService.getApplicant(id);
         if(applicant.isPresent()){
-            return new ResponseEntity<>(ApplicantMapper.toDto(applicant.get()), null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(ApplicantMapper.toDto(applicant.get()), null, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(null, null, HttpStatus.OK);
+            return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
         }
     }
 

@@ -12,9 +12,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -45,12 +48,27 @@ public class ApplicationControllerTest {
 
     @Test
     public void updateApplications() throws Exception {
-//        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-//        JobDto jobDto = new JobDto(1L, "test");
-//        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "", "", null);
-//        when(applicationService.createApplication(any(Application.class)));
-//        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
-//        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
+        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test");
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "", "", null);
+        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "test");
+        when(applicationService.getApplication(anyLong())).thenReturn(application);
+        when(applicationService.save(any(Application.class))).thenReturn(application);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
+    }
+
+    @Test
+    public void updateApplicationAccept() throws Exception {
+        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test");
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
+        applicationDto.setUpdateAction("accept");
+        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        when(applicationService.getApplication(anyLong())).thenReturn(application);
+        when(applicationService.save(any(Application.class))).thenReturn(application);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
 
     @Test

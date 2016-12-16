@@ -18,8 +18,8 @@ public class JobServiceImpl implements JobService{
         this.jobRepository = jobRepository;
     }
 
-    public List<Job> getJobs() {
-        return (List<Job>)jobRepository.findAll();
+    public Optional<List<Job>> getJobs() {
+        return Optional.of((List)jobRepository.findAll());
     }
 
     public Job saveJob(Job job){
