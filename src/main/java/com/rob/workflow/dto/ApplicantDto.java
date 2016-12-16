@@ -1,7 +1,5 @@
 package com.rob.workflow.dto;
 
-import java.util.List;
-
 public class ApplicantDto {
 
     private Long applicantId;
@@ -22,10 +20,6 @@ public class ApplicantDto {
 
     public Long getApplicantId() {
         return applicantId;
-    }
-
-    public void setApplicantId(Long applicantId) {
-        this.applicantId = applicantId;
     }
 
     public void setName(String name) {

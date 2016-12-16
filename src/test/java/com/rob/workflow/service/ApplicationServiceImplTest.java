@@ -28,7 +28,7 @@ public class ApplicationServiceImplTest {
     private JobRepository jobRepository;
 
     @InjectMocks
-    ApplicationService applicationService = new ApplicationServiceImpl();
+    ApplicationServiceImpl applicationService;
 
     @Test
     public void testCreate(){

@@ -12,16 +12,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ApplicationServiceImpl implements ApplicationService{
+class ApplicationServiceImpl implements ApplicationService{
+
+    private final ApplicationRepository applicationRepository;
+
+    private final ApplicantRepository applicantRepository;
+
+    private final JobRepository jobRepository;
 
     @Autowired
-    private ApplicationRepository applicationRepository;
-
-    @Autowired
-    private ApplicantRepository applicantRepository;
-
-    @Autowired
-    private JobRepository jobRepository;
+    ApplicationServiceImpl(ApplicationRepository applicationRepository, ApplicantRepository applicantRepository, JobRepository jobRepository) {
+        this.applicationRepository = applicationRepository;
+        this.applicantRepository = applicantRepository;
+        this.jobRepository = jobRepository;
+    }
 
     public Application createApplication(Application application){
         Job one = jobRepository.findOne(application.getJob().getJobId());
@@ -36,7 +40,7 @@ public class ApplicationServiceImpl implements ApplicationService{
     }
 
     public Application getApplication(Long id) {
-        return (Application) applicationRepository.findOne(id);
+        return applicationRepository.findOne(id);
     }
 
     public Application save(Application application) {

@@ -1,27 +1,14 @@
 package com.rob.workflow.service;
 
 import com.rob.workflow.model.Applicant;
-import com.rob.workflow.repository.ApplicantRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class ApplicantService {
+interface  ApplicantService {
 
-    @Autowired
-    private ApplicantRepository applicantRepository;
-
-    public List<Applicant> getApplicants() {
-        return (List<Applicant>) applicantRepository.findAll();
-    }
-
-    public Applicant saveApplicant(Applicant applicant){
-        return applicantRepository.save(applicant);
-    }
-
-    public void delete(long id) {
-        applicantRepository.delete(id);
-    }
+    List<Applicant> getApplicants();
+    Optional<Applicant> getApplicant(Long id);
+    Applicant saveApplicant(Applicant applicant);
+    void delete(long id);
 }

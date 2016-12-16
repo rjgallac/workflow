@@ -2,7 +2,7 @@ package com.rob.workflow.controller;
 
 import com.rob.workflow.dto.ApplicantDto;
 import com.rob.workflow.model.Applicant;
-import com.rob.workflow.service.ApplicantService;
+import com.rob.workflow.service.ApplicantServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class ApplicantControllerTest {
 
     @Mock
-    ApplicantService applicantService;
+    ApplicantServiceImpl applicantService;
 
     @InjectMocks
     ApplicantController applicantController;

@@ -19,7 +19,10 @@ import static org.junit.Assert.assertEquals;
 public class JobControllerIntTest {
 
     @Autowired
-    Flyway flyway;
+    private Flyway flyway;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Before
     public void setup(){
@@ -27,8 +30,6 @@ public class JobControllerIntTest {
         flyway.migrate();
     }
 
-    @Autowired
-    private TestRestTemplate restTemplate;
 
     @Test
     public void saveJob() throws Exception {
@@ -38,10 +39,10 @@ public class JobControllerIntTest {
     }
 
     @Test
-    public void saveJobAndRetreive() throws Exception {
+    public void saveJobAndRetrieve() throws Exception {
         JobDto jobDto = new JobDto();
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
-        ResponseEntity<JobDto> jobDtoResponseEntity2 = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
+        this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
         assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
         ResponseEntity<JobDto[]> forEntity = this.restTemplate.getForEntity("/job/", JobDto[].class);
         assertEquals(2, forEntity.getBody().length);

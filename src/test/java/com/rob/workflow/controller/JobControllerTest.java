@@ -2,7 +2,7 @@ package com.rob.workflow.controller;
 
 import com.rob.workflow.dto.JobDto;
 import com.rob.workflow.model.Job;
-import com.rob.workflow.service.JobService;
+import com.rob.workflow.service.JobServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.doNothing;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class JobControllerTest {
 
     @Mock
-    JobService jobService;
+    JobServiceImpl jobService;
 
     @InjectMocks
     JobController jobController;
