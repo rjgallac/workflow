@@ -13,29 +13,26 @@ public class EndStateTest {
         workflowState.next();
     }
 
-    @Test
+    @Test(expected = StateException.class)
     public void previous() throws Exception, StateException {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new EndState());
         workflowState.previous();
-        assertEquals("Stage 2", workflowState.getState().getStatusReadble());
     }
 
-    @Test
+    @Test(expected = StateException.class)
     public void withdraw() throws StateException {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new EndState());
         workflowState.withdraw();
-        assertEquals("Withdrawn", workflowState.getState().getStatusReadble());
 
     }
 
-    @Test
+    @Test(expected = StateException.class)
     public void reject() throws StateException {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new EndState());
         workflowState.reject();
-        assertEquals("Rejected", workflowState.getState().getStatusReadble());
 
     }
 

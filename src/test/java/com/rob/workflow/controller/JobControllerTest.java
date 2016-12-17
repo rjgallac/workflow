@@ -75,12 +75,13 @@ public class JobControllerTest {
 
     @Test
     public void updateJobs() throws Exception {
-
+        jobController.updateJobs(1L);
     }
 
     @Test
     public void deleteJob() throws Exception {
         doNothing().when(jobService).delete(anyLong());
+        jobController.deleteJob(1L);
     }
 
 }

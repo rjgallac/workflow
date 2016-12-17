@@ -68,12 +68,13 @@ public class ApplicantControllerTest {
 
     @Test
     public void updateApplicant() throws Exception {
+        applicantController.updateApplicant(1L);
     }
 
     @Test
     public void deleteApplicant() throws Exception {
         doNothing().when(applicantService).delete(anyLong());
-        applicantService.delete(1L);
+        applicantController.deleteApplicant(1L);
     }
 
 }

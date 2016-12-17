@@ -1,6 +1,7 @@
 package com.rob.workflow.model.shortworkflow;
 
 import com.rob.workflow.model.Application;
+import com.rob.workflow.model.longworkflow.SlowStartState;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -29,13 +30,13 @@ public class WorkflowStateTest {
     public void testSlowWorkFlow(){
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new SlowStartState());
-        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.SlowStartState");
+        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.longworkflow.SlowStartState");
         try {
             workflowState.next();
         } catch (StateException e) {
             e.printStackTrace();
         }
-        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage1State");
+        assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.longworkflow.SlowStage1State");
     }
 
     @Test

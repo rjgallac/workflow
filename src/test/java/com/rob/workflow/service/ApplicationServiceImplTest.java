@@ -45,4 +45,18 @@ public class ApplicationServiceImplTest {
 
     }
 
+    @Test
+    public void testGetApplication(){
+        applicationService.getApplication(1L);
+    }
+    @Test
+    public void deleteApplication(){
+        applicationService.deleteOne(1L);
+    }
+    @Test
+    public void saveApplication(){
+        applicationService.save(new Application());
+
+    }
+
 }

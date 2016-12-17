@@ -1,12 +1,11 @@
-package com.rob.workflow.model.shortworkflow;
+package com.rob.workflow.model.longworkflow;
 
+import com.rob.workflow.model.shortworkflow.StateException;
+import com.rob.workflow.model.shortworkflow.WorkflowState;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by bob on 17/12/16.
- */
 public class SlowStartStateTest {
     @Test
     public void next() throws Exception {
@@ -45,7 +44,9 @@ public class SlowStartStateTest {
 
     @Test
     public void getValidStatuses() throws Exception {
-
+        WorkflowState workflowState = new WorkflowState();
+        workflowState.setState(new SlowStartState());
+        assertEquals(new String[]{"accept", "reject", "withdraw"}, workflowState.getState().getValidStatuses());
     }
 
 }

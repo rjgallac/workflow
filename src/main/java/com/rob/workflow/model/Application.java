@@ -1,5 +1,6 @@
 package com.rob.workflow.model;
 
+import com.rob.workflow.model.longworkflow.SlowStartState;
 import com.rob.workflow.model.shortworkflow.*;
 
 import javax.persistence.*;

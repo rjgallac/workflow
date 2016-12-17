@@ -12,18 +12,21 @@ public class EndState implements State {
     }
 
     @Override
-    public void previous(WorkflowState workflowState) {
-        workflowState.setState(new Stage2State());
+    public void previous(WorkflowState workflowState) throws StateException {
+        System.out.println("invalid state transistion from end state");
+        throw new StateException();
     }
 
     @Override
-    public void withdraw(WorkflowState workflowState){
-        workflowState.setState(new Withdrawn());
+    public void withdraw(WorkflowState workflowState) throws StateException {
+        System.out.println("invalid state transistion from end state");
+        throw new StateException();
     }
 
     @Override
     public void reject(WorkflowState workflowState) throws StateException {
-        workflowState.setState(new Rejected());
+        System.out.println("invalid state transistion from end state");
+        throw new StateException();
     }
 
     @Override

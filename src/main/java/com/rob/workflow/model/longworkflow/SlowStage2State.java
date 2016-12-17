@@ -1,17 +1,19 @@
-package com.rob.workflow.model.shortworkflow;
+package com.rob.workflow.model.longworkflow;
 
-public class SlowStartState implements State {
+import com.rob.workflow.model.shortworkflow.*;
 
-    private static final String statusReadble = "Slow Start";
+public class SlowStage2State implements State {
+
+    private static final String statusReadble = "Stage 2";
 
     @Override
     public void next(WorkflowState workflowState) {
-        workflowState.setState(new Stage1State());
+        workflowState.setState(new EndState());
     }
 
     @Override
-    public void previous(WorkflowState workflowState) throws StateException {
-        throw new StateException();
+    public void previous(WorkflowState workflowState) {
+        workflowState.setState(new Stage1State());
     }
 
     public String getStatusReadble() {

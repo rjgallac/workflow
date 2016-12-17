@@ -37,10 +37,12 @@ public class JobServiceImplTest {
     @Test
     public void delete() throws Exception {
         when(jobRepository.save(new Job())).thenReturn(new Job());
+        jobService.delete(1L);
     }
 
     @Test
     public void getJob() throws Exception {
+        jobService.getJob(1L);
 
     }
 

@@ -70,10 +70,34 @@ public class ApplicationControllerTest {
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
+    @Test
+    public void updateApplicationReject() throws Exception {
+        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test");
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
+        applicationDto.setUpdateAction("reject");
+        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        when(applicationService.getApplication(anyLong())).thenReturn(application);
+        when(applicationService.save(any(Application.class))).thenReturn(application);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
+    }
+    @Test
+    public void updateApplicationWithdraw() throws Exception {
+        ApplicantDto applicantDto = new ApplicantDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test");
+        ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
+        applicationDto.setUpdateAction("withdraw");
+        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        when(applicationService.getApplication(anyLong())).thenReturn(application);
+        when(applicationService.save(any(Application.class))).thenReturn(application);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        assertEquals("test", applicationDtoResponseEntity.getBody().getName());
+    }
 
     @Test
     public void deleteApplication() throws Exception {
-
+        applicationController.deleteApplication(1L);
     }
 
 }

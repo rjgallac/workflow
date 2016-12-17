@@ -7,8 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class JobMapperTest {
+
+
     @Test
     public void toEntity() throws Exception {
+        JobMapper jobMapper = new JobMapper();
         JobDto jobDto = new JobDto(1L, "test");
         Job job = JobMapper.toEntity(jobDto);
         assertEquals(jobDto.getName(), job.getName());

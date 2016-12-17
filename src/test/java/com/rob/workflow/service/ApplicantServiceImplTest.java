@@ -45,6 +45,8 @@ public class ApplicantServiceImplTest {
     @Test
     public void delete() throws Exception {
         doNothing().when(applicantRepository).delete(any(Applicant.class));
+        applicantService.delete(1L);
+
     }
 
 }
