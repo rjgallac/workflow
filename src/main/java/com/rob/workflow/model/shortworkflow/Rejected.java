@@ -5,21 +5,13 @@ public class Rejected implements State {
     private static final String statusReadble = "Rejected";
 
     @Override
-    public void next(WorkflowState workflowState) {
-        try {
+    public void next(WorkflowState workflowState) throws StateException {
             throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
-    public void previous(WorkflowState workflowState) {
-        try {
+    public void previous(WorkflowState workflowState) throws StateException {
             throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getStatusReadble() {
@@ -27,21 +19,13 @@ public class Rejected implements State {
     }
 
     @Override
-    public void withdraw(WorkflowState workflowState) {
-        try {
+    public void withdraw(WorkflowState workflowState) throws StateException {
             throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
-    public void reject(WorkflowState workflowState) {
-        try {
+    public void reject(WorkflowState workflowState) throws StateException {
             throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
     }
     public String[] getValidStatuses(){
         return new String[]{};

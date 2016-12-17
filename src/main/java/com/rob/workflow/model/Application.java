@@ -1,9 +1,6 @@
 package com.rob.workflow.model;
 
-import com.rob.workflow.model.shortworkflow.SlowStartState;
-import com.rob.workflow.model.shortworkflow.StartState;
-import com.rob.workflow.model.shortworkflow.State;
-import com.rob.workflow.model.shortworkflow.WorkflowState;
+import com.rob.workflow.model.shortworkflow.*;
 
 import javax.persistence.*;
 
@@ -93,7 +90,11 @@ public class Application {
     }
 
     public void next(){
-        workflowState.next();
+        try {
+            workflowState.next();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setStateString(){
@@ -113,11 +114,19 @@ public class Application {
     }
 
     public void withdraw() {
-        this.workflowState.withdraw();
+        try {
+            this.workflowState.withdraw();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     public void reject() {
-        this.workflowState.reject();
+        try {
+            this.workflowState.reject();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     public void restoreState(){

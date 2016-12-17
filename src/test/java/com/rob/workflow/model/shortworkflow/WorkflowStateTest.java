@@ -12,12 +12,17 @@ public class WorkflowStateTest {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new StartState());
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.StartState");
-        workflowState.next();
+        try {
+            workflowState.next();
+
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage1State");
         workflowState.next();
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage2State");
         workflowState.next();
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.EndState");
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -25,7 +30,11 @@ public class WorkflowStateTest {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new SlowStartState());
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.SlowStartState");
-        workflowState.next();
+        try {
+            workflowState.next();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
         assertEquals(workflowState.getState().getClass().getName(), "com.rob.workflow.model.shortworkflow.Stage1State");
     }
 

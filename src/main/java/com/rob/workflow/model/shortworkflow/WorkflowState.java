@@ -9,8 +9,12 @@ public class WorkflowState {
         this.state = new StartState();
     }
 
-    public void next(){
-        state.next(this);
+    public void next() throws StateException {
+        try {
+            state.next(this);
+        } catch (StateException e) {
+            throw new StateException();
+        }
     }
 
     public void setState(State state) {
@@ -34,11 +38,15 @@ public class WorkflowState {
         return state;
     }
 
-    public void withdraw() {
-        state.withdraw(this);
+    public void withdraw() throws StateException {
+            state.withdraw(this);
     }
 
-    public void reject() {
+    public void reject() throws StateException {
         state.reject(this);
+    }
+
+    public void previous() throws StateException{
+        state.previous(this);
     }
 }

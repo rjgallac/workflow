@@ -66,6 +66,14 @@ public class JobControllerTest {
     }
 
     @Test
+    public void getJobNoneFound() throws Exception {
+        Job job = new Job(1L, "test");
+        when(jobService.getJob(1L)).thenReturn(Optional.empty());
+        ResponseEntity<JobDto> job1 = jobController.getJob(1L);
+        assertEquals(HttpStatus.NOT_FOUND, job1.getStatusCode());
+    }
+
+    @Test
     public void updateJobs() throws Exception {
 
     }

@@ -25,16 +25,8 @@ public class Applicant {
         return applicantId;
     }
 
-    public void setApplicantId(Long applicantId) {
-        this.applicantId = applicantId;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

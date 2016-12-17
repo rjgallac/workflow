@@ -5,39 +5,23 @@ public class Withdrawn implements State {
     private static final String statusReadble = "Withdrawn";
 
     @Override
-    public void next(WorkflowState workflowState) {
-        try {
-            throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
+    public void next(WorkflowState workflowState) throws StateException {
+        throw new StateException();
     }
 
     @Override
-    public void previous(WorkflowState workflowState) {
-        try {
-            throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
+    public void previous(WorkflowState workflowState) throws StateException {
+        throw new StateException();
     }
 
     @Override
-    public void withdraw(WorkflowState workflowState) {
-        try {
-            throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
+    public void withdraw(WorkflowState workflowState) throws StateException {
+        throw new StateException();
     }
 
     @Override
-    public void reject(WorkflowState workflowState) {
-        try {
-            throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
+    public void reject(WorkflowState workflowState) throws StateException {
+        throw new StateException();
     }
 
     public String getStatusReadble() {
