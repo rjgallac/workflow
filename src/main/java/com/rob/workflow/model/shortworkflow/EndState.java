@@ -17,13 +17,13 @@ public class EndState implements State {
     }
 
     @Override
-    public void withdraw(WorkflowState workflowState) throws StateException {
-        throw new StateException();
+    public void withdraw(WorkflowState workflowState){
+        workflowState.setState(new Withdrawn());
     }
 
     @Override
     public void reject(WorkflowState workflowState) throws StateException {
-        throw new StateException();
+        workflowState.setState(new Rejected());
     }
 
     @Override
@@ -32,6 +32,6 @@ public class EndState implements State {
     }
 
     public String[] getValidStatuses(){
-        return new String[]{};
+        return new String[]{"reject", "withdraw", "previous"};
     }
 }

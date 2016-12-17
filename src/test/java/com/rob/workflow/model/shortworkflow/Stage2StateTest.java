@@ -2,55 +2,57 @@ package com.rob.workflow.model.shortworkflow;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class EndStateTest {
-
-    @Test(expected = StateException.class)
-    public void next() throws StateException {
+/**
+ * Created by bob on 17/12/16.
+ */
+public class Stage2StateTest {
+    @Test
+    public void next() throws Exception, StateException {
         WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
+        workflowState.setState(new Stage2State());
         workflowState.next();
+        assertEquals("End", workflowState.getState().getStatusReadble());
     }
 
     @Test
     public void previous() throws Exception, StateException {
         WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
+        workflowState.setState(new Stage2State());
         workflowState.previous();
+    }
+
+    @Test
+    public void getStatusReadble() throws Exception {
+        WorkflowState workflowState = new WorkflowState();
+        workflowState.setState(new Stage2State());
         assertEquals("Stage 2", workflowState.getState().getStatusReadble());
     }
 
     @Test
-    public void withdraw() throws StateException {
+    public void withdraw() throws Exception, StateException {
         WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
+        workflowState.setState(new Stage2State());
         workflowState.withdraw();
         assertEquals("Withdrawn", workflowState.getState().getStatusReadble());
 
     }
 
     @Test
-    public void reject() throws StateException {
+    public void reject() throws Exception, StateException {
         WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
+        workflowState.setState(new Stage2State());
         workflowState.reject();
         assertEquals("Rejected", workflowState.getState().getStatusReadble());
 
     }
 
     @Test
-    public void testState(){
+    public void getValidStatuses() throws Exception {
         WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
-        assertEquals("End", workflowState.getState().getStatusReadble());
-    }
-
-    @Test
-    public void testStatues(){
-        WorkflowState workflowState = new WorkflowState();
-        workflowState.setState(new EndState());
-        String[] expecteds = {"reject", "withdraw", "previous"};
+        workflowState.setState(new Stage2State());
+        String[] expecteds = {"accept", "reject", "withdraw"};
         assertEquals(expecteds, workflowState.getState().getValidStatuses());
     }
 

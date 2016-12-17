@@ -45,22 +45,6 @@ public class Application {
         this.workflowStateString = workflowState.getState().getClass().getName();
     }
 
-    public void setName(String name) {
-        Object o = null;
-        try {
-            o = Class.forName(workflowStateString).getConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        this.workflowState = new WorkflowState();
-        this.workflowState.setState((State) o);
-        this.name = name;
-    }
-
-    public void setWorkflowStateString(String workflowStateString) {
-        this.workflowStateString = workflowStateString;
-    }
-
     public String getName() {
         return name;
     }
@@ -71,10 +55,6 @@ public class Application {
 
     public Job getJob() {
         return job;
-    }
-
-    public void setApplicationId(Long applicationId) {
-        this.applicationId = applicationId;
     }
 
     public Applicant getApplicant() {

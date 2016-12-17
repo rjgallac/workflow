@@ -10,12 +10,8 @@ public class SlowStartState implements State {
     }
 
     @Override
-    public void previous(WorkflowState workflowState) {
-        try {
-            throw new StateException();
-        } catch (StateException e) {
-            e.printStackTrace();
-        }
+    public void previous(WorkflowState workflowState) throws StateException {
+        throw new StateException();
     }
 
     public String getStatusReadble() {
