@@ -59,10 +59,8 @@ public class JobController {
         if(jobDto.getUpdateAction() != null){
             if(jobDto.getUpdateAction().equals("next"))
                 job.next();
-//            if(jobDto.getUpdateAction().equals("reject"))
-//                job.reject();
-//            if(jobDto.getUpdateAction().equals("withdraw"))
-//                job.withdraw();
+            if(jobDto.getUpdateAction().equals("previous"))
+                job.previous();
         }
         job.setStateString();
         Job save = jobService.saveJob(job);

@@ -52,6 +52,13 @@ public class Job {
             e.printStackTrace();
         }
     }
+    public void previous(){
+        try {
+            jobState.previous();
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void restoreState(){
         this.jobState = new JobState();
