@@ -33,7 +33,7 @@ public class JobControllerIntTest {
 
     @Test
     public void saveJob() throws Exception {
-        JobDto jobDto = new JobDto(null, "test");
+        JobDto jobDto = new JobDto(null, "test", null, null);
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
         assertEquals(HttpStatus.OK, jobDtoResponseEntity.getStatusCode());
     }

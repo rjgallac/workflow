@@ -24,4 +24,16 @@ public class JobState {
     public void previous() throws StateException{
         state.previous(this);
     }
+    public void setStateFromDB(String state){
+        Object o = null;
+        try {
+            o = Class.forName(state).getConstructor().newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.setState((State) o);
+
+    }
 }

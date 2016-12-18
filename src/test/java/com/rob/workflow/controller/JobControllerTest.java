@@ -35,7 +35,7 @@ public class JobControllerTest {
     public void saveJob() throws Exception {
         Job test1 = new Job(1L, "test");
         when(jobService.saveJob(any(Job.class))).thenReturn(test1);
-        ResponseEntity<JobDto> test = jobController.saveJob(new JobDto(1L, "test"));
+        ResponseEntity<JobDto> test = jobController.saveJob(new JobDto(1L, "test", null, null));
         assertEquals("test", test.getBody().getName());
     }
 

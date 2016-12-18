@@ -10,6 +10,7 @@ public class JobMapper {
     }
 
     public static JobDto toDto(Job job){
-        return new JobDto(job.getJobId(), job.getName());
+        job.restoreState();
+        return new JobDto(job.getJobId(), job.getName(), job.getJobState().getState().getValidStatuses(), job.getJobState().getState().getStatusReadble());
     }
 }

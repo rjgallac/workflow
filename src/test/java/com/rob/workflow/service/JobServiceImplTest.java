@@ -42,6 +42,7 @@ public class JobServiceImplTest {
 
     @Test
     public void getJob() throws Exception {
+        when(jobRepository.findOne(1L)).thenReturn(new Job());
         jobService.getJob(1L);
 
     }

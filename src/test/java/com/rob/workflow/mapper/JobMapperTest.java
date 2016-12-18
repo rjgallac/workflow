@@ -12,7 +12,7 @@ public class JobMapperTest {
     @Test
     public void toEntity() throws Exception {
         JobMapper jobMapper = new JobMapper();
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test",null, null);
         Job job = JobMapper.toEntity(jobDto);
         assertEquals(jobDto.getName(), job.getName());
     }

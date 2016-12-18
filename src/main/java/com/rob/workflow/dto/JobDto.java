@@ -3,13 +3,16 @@ package com.rob.workflow.dto;
 public class JobDto {
     private Long jobId;
     private String name;
-
+    private String[] validStatuses;
+    private String status;
     public JobDto() {
     }
 
-    public JobDto(Long jobId, String name) {
+    public JobDto(Long jobId, String name, String[] validStatuses, String status) {
         this.jobId = jobId;
         this.name = name;
+        this.validStatuses = validStatuses;
+        this.status = status;
     }
 
     public Long getJobId() {
@@ -18,5 +21,13 @@ public class JobDto {
 
     public String getName() {
         return name;
+    }
+
+    public String[] getValidStatuses() {
+        return validStatuses;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

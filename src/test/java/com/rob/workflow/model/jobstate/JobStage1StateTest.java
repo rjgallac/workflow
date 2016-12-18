@@ -15,7 +15,7 @@ public class JobStage1StateTest {
         jobState.next();
     }
 
-    @Test(expected=StateException.class)
+    @Test
     public void previous() throws Exception, StateException {
         JobState jobState = new JobState();
         jobState.setState(new JobStage1State());

@@ -23,5 +23,11 @@ public class StartStateTest {
         workflowState.setState(new StartState());
         workflowState.reject();
     }
+    @Test(expected = StateException.class)
+    public void getPrevious() throws Exception, StateException {
+        WorkflowState workflowState = new WorkflowState();
+        workflowState.setState(new StartState());
+        workflowState.previous();
+    }
 
 }

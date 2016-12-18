@@ -32,7 +32,7 @@ public class ApplicationControllerTest {
 
     @Test
     public void saveApplication() throws Exception {
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test", null, null);
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "sdf", "startDate", null);
         Job job = new Job(1L, "test");
@@ -49,7 +49,7 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplications() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test", null, null);
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "", "", null);
         Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "test");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
@@ -61,7 +61,7 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationAccept() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test", null, null);
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("accept");
         Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
@@ -73,7 +73,7 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationReject() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test", null, null);
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("reject");
         Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
@@ -85,7 +85,7 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationWithdraw() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test");
+        JobDto jobDto = new JobDto(1L, "test", null, null);
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("withdraw");
         Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
