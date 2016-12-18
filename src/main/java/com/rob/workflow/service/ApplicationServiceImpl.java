@@ -29,9 +29,11 @@ class ApplicationServiceImpl implements ApplicationService{
 
     public Application createApplication(Application application){
         Job one = jobRepository.findOne(application.getJob().getJobId());
+
         Applicant one1 = applicantRepository.findOne(application.getApplicant().getApplicantId());
         application.setJob(one);
         application.setApplicant(one1);
+        application.setWorkflowStateString(one.getApplicationStartState());
         return applicationRepository.save(application);
     }
 

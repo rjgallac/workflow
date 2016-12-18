@@ -6,11 +6,11 @@ import com.rob.workflow.model.Job;
 public class JobMapper {
 
     public static Job toEntity(JobDto jobDto){
-        return new Job(jobDto.getJobId(), jobDto.getName());
+        return new Job(jobDto.getJobId(), jobDto.getName(), "com.rob.workflow.model.shortworkflow.StartState");
     }
 
     public static JobDto toDto(Job job){
         job.restoreState();
-        return new JobDto(job.getJobId(), job.getName(), job.getJobState().getState().getValidStatuses(), job.getJobState().getState().getStatusReadble());
+        return new JobDto(job.getJobId(), job.getName(), job.getJobState().getState().getValidStatuses(), job.getJobState().getState().getStatusReadble(), job.getApplicationStartState());
     }
 }

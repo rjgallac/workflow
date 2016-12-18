@@ -33,16 +33,16 @@ public class JobControllerTest {
     JobController jobController;
     @Test
     public void saveJob() throws Exception {
-        Job test1 = new Job(1L, "test");
+        Job test1 = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         when(jobService.saveJob(any(Job.class))).thenReturn(test1);
-        ResponseEntity<JobDto> test = jobController.saveJob(new JobDto(1L, "test", null, null));
+        ResponseEntity<JobDto> test = jobController.saveJob(new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState"));
         assertEquals("test", test.getBody().getName());
     }
 
     @Test
     public void getJobs() throws Exception {
         List<Job> jobsReturned = new ArrayList();
-        jobsReturned.add(new Job(1L, "test"));
+        jobsReturned.add(new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"));
         when(jobService.getJobs()).thenReturn(Optional.ofNullable(jobsReturned));
         ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
         assertEquals(1, jobs.getBody().size());
@@ -51,7 +51,7 @@ public class JobControllerTest {
     @Test
     public void getJobsNoneFound() throws Exception {
         List<Job> jobsReturned = new ArrayList();
-        jobsReturned.add(new Job(1L, "test"));
+        jobsReturned.add(new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"));
         when(jobService.getJobs()).thenReturn(Optional.empty());
         ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
         assertEquals(HttpStatus.NOT_FOUND, jobs.getStatusCode());
@@ -59,7 +59,7 @@ public class JobControllerTest {
 
     @Test
     public void getJob() throws Exception {
-        Job job = new Job(1L, "test");
+        Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         when(jobService.getJob(1L)).thenReturn(Optional.of(job));
         ResponseEntity<JobDto> job1 = jobController.getJob(1L);
         assertEquals("test", job1.getBody().getName());
@@ -67,7 +67,7 @@ public class JobControllerTest {
 
     @Test
     public void getJobNoneFound() throws Exception {
-        Job job = new Job(1L, "test");
+        Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         when(jobService.getJob(1L)).thenReturn(Optional.empty());
         ResponseEntity<JobDto> job1 = jobController.getJob(1L);
         assertEquals(HttpStatus.NOT_FOUND, job1.getStatusCode());
@@ -75,7 +75,7 @@ public class JobControllerTest {
 
     @Test
     public void updateJobs() throws Exception {
-        Job test = new Job(1L, "test");
+        Job test = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         test.setWorkflowStateString("com.rob.workflow.model.jobstate.JobStartState");
         when(jobService.getJob(1L)).thenReturn(Optional.of(test));
         when(jobService.saveJob(test)).thenReturn(test);

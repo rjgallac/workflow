@@ -38,11 +38,11 @@ public class Application {
         this.job = job;
         this.applicant = applicant;
         this.workflowState = new WorkflowState();
-        if(startState.equals("slow")){
-            this.workflowState.setState(new SlowStartState());
-        }else{
-            this.workflowState.setState(new StartState());
-        }
+//        if(startState.equals("slow")){
+//            this.workflowState.setState(new SlowStartState());
+//        }else{
+//            this.workflowState.setState(new StartState());
+//        }
         this.workflowStateString = workflowState.getState().getClass().getName();
     }
 
@@ -84,6 +84,10 @@ public class Application {
 
     public String getWorkflowStateString() {
         return workflowStateString;
+    }
+
+    public void setWorkflowStateString(String workflowStateString) {
+        this.workflowStateString = workflowStateString;
     }
 
     public WorkflowState getWorkflowState() {

@@ -23,7 +23,7 @@ public class ApplicationControllerIntTest {
 
     @Test
     public void saveApplication() throws Exception {
-        JobDto jobDto = new JobDto(null, "test", null, null);
+        JobDto jobDto = new JobDto(null, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
 
         ApplicantDto applicantDto = new ApplicantDto(null, "test");
@@ -37,7 +37,7 @@ public class ApplicationControllerIntTest {
 
     @Test
     public void saveApplicationAndRetreive() throws Exception {
-        JobDto jobDto = new JobDto(null, "test", null, null);
+        JobDto jobDto = new JobDto(null, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ResponseEntity<JobDto> jobDtoResponseEntity = this.restTemplate.postForEntity("/job/", jobDto, JobDto.class);
 
         ApplicantDto applicantDto = new ApplicantDto(null, "test");

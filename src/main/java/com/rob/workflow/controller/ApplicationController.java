@@ -3,13 +3,16 @@ package com.rob.workflow.controller;
 import com.rob.workflow.dto.ApplicationDto;
 import com.rob.workflow.mapper.ApplicationMapper;
 import com.rob.workflow.model.Application;
+import com.rob.workflow.model.Job;
 import com.rob.workflow.service.ApplicationService;
+import com.rob.workflow.service.JobServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.rob.workflow.mapper.ApplicationMapper.toDto;
@@ -19,6 +22,8 @@ import static com.rob.workflow.mapper.ApplicationMapper.toEntity;
 public class ApplicationController {
 
     private ApplicationService applicationService;
+
+    private JobServiceImpl jobService;
 
     @Autowired
     public ApplicationController(ApplicationService applicationService) {

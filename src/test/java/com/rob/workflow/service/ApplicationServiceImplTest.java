@@ -32,7 +32,7 @@ public class ApplicationServiceImplTest {
 
     @Test
     public void testCreate(){
-        Job job = new Job(1L, "test");
+        Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         Applicant applicant = new Applicant(1L, "test");
         Application applicationIn = new Application(null, "test", job, applicant, "test");
 

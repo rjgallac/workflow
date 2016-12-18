@@ -6,15 +6,17 @@ public class JobDto {
     private String[] validStatuses;
     private String status;
     private String updateAction;
+    private String applicationStartState;
 
     public JobDto() {
     }
 
-    public JobDto(Long jobId, String name, String[] validStatuses, String status) {
+    public JobDto(Long jobId, String name, String[] validStatuses, String status, String applicationStartState) {
         this.jobId = jobId;
         this.name = name;
         this.validStatuses = validStatuses;
         this.status = status;
+        this.applicationStartState = applicationStartState;
     }
 
     public Long getJobId() {

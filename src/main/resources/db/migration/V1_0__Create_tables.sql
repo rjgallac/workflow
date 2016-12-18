@@ -8,6 +8,7 @@ create table job(
     job_id bigint(20) NOT NULL AUTO_INCREMENT,
     name varchar(255),
     workflow_state_string varchar(255),
+    application_start_state varchar(255),
     PRIMARY KEY(job_id)
 );
 

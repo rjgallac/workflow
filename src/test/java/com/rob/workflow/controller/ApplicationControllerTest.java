@@ -32,10 +32,10 @@ public class ApplicationControllerTest {
 
     @Test
     public void saveApplication() throws Exception {
-        JobDto jobDto = new JobDto(1L, "test", null, null);
+        JobDto jobDto = new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "sdf", "startDate", null);
-        Job job = new Job(1L, "test");
+        Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         Applicant applicant = new Applicant(1L, "test");
         when(applicationService.createApplication(any())).thenReturn(new Application(1L, "test", job, applicant, ""));
         applicationController.saveApplication(applicationDto);
@@ -49,9 +49,9 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplications() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test", null, null);
+        JobDto jobDto = new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "", "", null);
-        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "test");
+        Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "test");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
@@ -61,10 +61,10 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationAccept() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test", null, null);
+        JobDto jobDto = new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("accept");
-        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
@@ -73,10 +73,10 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationReject() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test", null, null);
+        JobDto jobDto = new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("reject");
-        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
@@ -85,10 +85,10 @@ public class ApplicationControllerTest {
     @Test
     public void updateApplicationWithdraw() throws Exception {
         ApplicantDto applicantDto = new ApplicantDto(1L, "test");
-        JobDto jobDto = new JobDto(1L, "test", null, null);
+        JobDto jobDto = new JobDto(1L, "test", null, null, "com.rob.workflow.model.shortworkflow.StartState");
         ApplicationDto applicationDto = new ApplicationDto(1L, "test", applicantDto, jobDto, "com.rob.workflow.model.shortworkflow.StartState", "", null);
         applicationDto.setUpdateAction("withdraw");
-        Application application = new Application(1L, "test", new Job(1L, "test"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
+        Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);

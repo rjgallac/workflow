@@ -18,6 +18,8 @@ public class Job {
 
     private String name;
 
+    private String applicationStartState;
+
     @Transient
     private JobState jobState;
 
@@ -26,12 +28,13 @@ public class Job {
     public Job() {
     }
 
-    public Job(Long jobId, String name) {
+    public Job(Long jobId, String name, String applicationStartState) {
         this.jobId = jobId;
         this.name = name;
         this.jobState = new JobState();
         this.jobState.setState(new JobStartState());
         this.workflowStateString = jobState.getState().getClass().getName();
+        this.applicationStartState = applicationStartState;
     }
 
     public String getName() {
@@ -75,5 +78,9 @@ public class Job {
 
     public void setWorkflowStateString(String workflowStateString) {
         this.workflowStateString = workflowStateString;
+    }
+
+    public String getApplicationStartState() {
+        return applicationStartState;
     }
 }
