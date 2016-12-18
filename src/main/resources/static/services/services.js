@@ -81,6 +81,18 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+        this.updateJob = function(data){
+            var defer = $q.defer();
+
+            $http.put('/job/'+data.jobId, data)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
     })
     .service('applicantService', function($http, $q) {
         this.getApplicants = function() {

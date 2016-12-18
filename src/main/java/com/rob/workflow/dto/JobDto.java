@@ -5,6 +5,8 @@ public class JobDto {
     private String name;
     private String[] validStatuses;
     private String status;
+    private String updateAction;
+
     public JobDto() {
     }
 
@@ -29,5 +31,13 @@ public class JobDto {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(String updateAction) {
+        this.updateAction = updateAction;
     }
 }

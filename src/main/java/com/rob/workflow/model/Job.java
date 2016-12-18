@@ -65,4 +65,8 @@ public class Job {
     public String getWorkflowStateString() {
         return workflowStateString;
     }
+
+    public void setWorkflowStateString(String workflowStateString) {
+        this.workflowStateString = workflowStateString;
+    }
 }

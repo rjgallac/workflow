@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.rob.workflow.mapper.JobMapper.toDto;
 import static com.rob.workflow.mapper.JobMapper.toEntity;
 
 @RestController
@@ -28,7 +29,7 @@ public class JobController {
 
     @RequestMapping(value = "/job/", method = RequestMethod.POST)
     public ResponseEntity<JobDto> saveJob(@RequestBody JobDto jobDto){
-        return new ResponseEntity<>(JobMapper.toDto(jobService.saveJob(toEntity(jobDto))), null, HttpStatus.OK);
+        return new ResponseEntity<>(toDto(jobService.saveJob(toEntity(jobDto))), null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/job/", method = RequestMethod.GET)
@@ -44,15 +45,29 @@ public class JobController {
     public ResponseEntity<JobDto> getJob(@PathVariable Long id){
         Optional<Job> job = jobService.getJob(id);
         if(job.isPresent()) {
-            return new ResponseEntity<>(JobMapper.toDto(job.get()), null, HttpStatus.OK);
+            return new ResponseEntity<>(toDto(job.get()), null, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
         }
     }
 
     @RequestMapping(value = "/job/{id}", method = RequestMethod.PUT)
-    public void updateJobs(@PathVariable Long id){
-        //
+    public ResponseEntity<JobDto> updateJobs(@RequestBody JobDto jobDto, @PathVariable Long id){
+        Job job = jobService.getJob(id).get();
+        //invoker action dynamically.
+        job.restoreState();
+        if(jobDto.getUpdateAction() != null){
+            if(jobDto.getUpdateAction().equals("next"))
+                job.next();
+//            if(jobDto.getUpdateAction().equals("reject"))
+//                job.reject();
+//            if(jobDto.getUpdateAction().equals("withdraw"))
+//                job.withdraw();
+        }
+        job.setStateString();
+        Job save = jobService.saveJob(job);
+        JobDto jobDto1 = toDto(save);
+        return new ResponseEntity<>(jobDto1, null, HttpStatus.OK);
     }
     @RequestMapping(value = "/job/{id}", method = RequestMethod.DELETE)
     public void deleteJob(@PathVariable Long id){

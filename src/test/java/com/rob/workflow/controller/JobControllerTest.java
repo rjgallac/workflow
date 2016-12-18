@@ -75,7 +75,11 @@ public class JobControllerTest {
 
     @Test
     public void updateJobs() throws Exception {
-        jobController.updateJobs(1L);
+        Job test = new Job(1L, "test");
+        test.setWorkflowStateString("com.rob.workflow.model.jobstate.JobStartState");
+        when(jobService.getJob(1L)).thenReturn(Optional.of(test));
+        when(jobService.saveJob(test)).thenReturn(test);
+        jobController.updateJobs(new JobDto(),1L);
     }
 
     @Test

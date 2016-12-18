@@ -69,7 +69,7 @@
                             <td><a class="button" href ng-click="deleteJob($index)">delete</a></td>
                             <td>
                                 <span ng-repeat="status in job.validStatuses">
-                                    <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
+                                    <a href class="button" ng-click="updateJob($parent.$index, status)">{{status}}</a>
                                 </span>
                             </td>
                         </tr>

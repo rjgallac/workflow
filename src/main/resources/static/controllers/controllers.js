@@ -56,6 +56,14 @@ angular.module('workflowApp')
                 $scope.jobs.push(data);
             })
         }
+        $scope.updateJob = function(index, action){
+            console.log("udating"+index);
+            $scope.jobs[index].updateAction = action;
+            console.log($scope.jobs[index]);
+            jobService.updateJob($scope.jobs[index]).then(function(data){
+                $scope.jobs[index] = data;
+            })
+        }
         applicantService.getApplicants().then(function(data){
             $scope.applicants = data;
             console.log(data);
