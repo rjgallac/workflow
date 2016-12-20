@@ -9,3 +9,4 @@ A contrived example of state model in an example job application
  - [ ] cucumber test module
  - [ ] create API module
  - [ ] Messages queue between JD app and application app.
+ - [ ] History

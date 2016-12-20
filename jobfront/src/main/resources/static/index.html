@@ -1,0 +1,47 @@
+<html ng-app="vacancyApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
+    <link rel='stylesheet' href='css/main.css'/>
+</head>
+<body  class="container" ng-controller="vacancyCtrl">
+<div class="row">
+    <div class="small-2 large-12 columns">
+        <h1>Vacancies</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 column">
+        <h3>Vacancies</h3></a>
+        <table border="1">
+            <thead>
+                <tr><th>id</th><th>title</th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="vacancy in vacancies">
+                    <td>{{vacancy.vacancyId}}</td>
+                    <td>{{vacancy.jobAdvert.title}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+</ul>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
+<script src="css/foundation/js/vendor/jquery.js"></script>
+<script src="css/foundation/js/vendor/foundation.js"></script>
+<script src="app.js"></script>
+<script src="services/services.js"></script>
+<script src="controllers/controllers.js"></script>
+<script>
+  $(document).foundation();
+</script>
+</body>
+</html>
