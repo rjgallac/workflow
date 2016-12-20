@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class VacancyServiceImpl implements VacancyService{
 
+    private final VacancyRepository vacancyRepository;
+
     @Autowired
-    VacancyRepository vacancyRepository;
+    public VacancyServiceImpl(VacancyRepository vacancyRepository) {
+        this.vacancyRepository = vacancyRepository;
+    }
 
     public List<Vacancy> getVacancies() {
         return (List<Vacancy>) vacancyRepository.findAll();

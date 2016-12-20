@@ -19,7 +19,7 @@ public class Vacancy {
 
 
     @ManyToOne
-    private JobAdvert jobAdvert;
+    private Advert advert;
 
 
     public Vacancy() {
@@ -41,7 +41,7 @@ public class Vacancy {
         return status;
     }
 
-    public JobAdvert getJobAdvert() {
-        return jobAdvert;
+    public Advert getAdvert() {
+        return advert;
     }
 }

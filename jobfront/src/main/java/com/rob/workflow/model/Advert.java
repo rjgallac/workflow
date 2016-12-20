@@ -3,11 +3,11 @@ package com.rob.workflow.model;
 import javax.persistence.*;
 
 @Entity
-public class JobAdvert {
+public class Advert {
 
     @Id
     @GeneratedValue
-    private Long jobAdvertId;
+    private Long advertId;
 
     private String title;
 
@@ -29,11 +29,11 @@ public class JobAdvert {
 
     private long applicationId;
 
-    public JobAdvert() {
+    public Advert() {
     }
 
-    public Long getJobAdvertId() {
-        return jobAdvertId;
+    public Long getAdvertId() {
+        return advertId;
     }
 
     public String getTitle() {
