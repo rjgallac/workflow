@@ -14,7 +14,11 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                controller: 'vacancyCtrl'
+            })
+            .when('/apply/:param', {
+                templateUrl: 'views/apply.html',
+                controller: 'applyCtrl'
             })
             .when('/about', {
                 templateUrl: 'views/about.html',

@@ -20,3 +20,6 @@ angular.module('vacancyApp')
 
 
     })
+    .controller('applyCtrl', function ($scope, $routeParams) {
+        $scope.param = $routeParams.param;
+    });
