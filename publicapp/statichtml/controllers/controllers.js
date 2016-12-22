@@ -20,6 +20,13 @@ angular.module('vacancyApp')
 
 
     })
-    .controller('applyCtrl', function ($scope, $routeParams) {
+    .controller('applyCtrl', function ($scope, $routeParams, applicationService) {
         $scope.param = $routeParams.param;
+
+        $scope.postApplication = function(){
+            console.log("post");
+            applicationService.postApplication().then(function(data){
+                console.log(data);
+            });
+        }
     });
