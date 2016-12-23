@@ -1,8 +1,15 @@
 package com.rob.workflow.model.shortworkflow;
 
+import com.rob.workflow.model.Stage;
+
+import javax.persistence.Enumerated;
+
 public class EndState implements State {
 
     private static final String statusReadble = "End";
+
+    @Enumerated
+    private final Stage stage = Stage.END;
 
     @Override
     public void next(WorkflowState workflowState) throws StateException {

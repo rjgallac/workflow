@@ -1,6 +1,13 @@
 package com.rob.workflow.model.shortworkflow;
 
+import com.rob.workflow.model.Stage;
+
+import javax.persistence.Enumerated;
+
 public class Stage1State implements State {
+
+    @Enumerated
+    private final Stage stage = Stage.STAGE1;
 
     private static final String statusReadble = "Stage 1";
 

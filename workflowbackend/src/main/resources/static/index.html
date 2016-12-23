@@ -38,19 +38,34 @@
                                         <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
                                     </span>
                                 </td>
+                                <td><p ng-repeat="history in application.applicationHistoryDtos">{{history.name}}-{{history.date}}</p></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="large-3 column">
 
-                    <h2>+ Application</h2>
-                    <form ng-submit="addApplication()">
-                    name:<input type="text" ng-model="application.name"/>
-                    job id:<input type="text" ng-model="application.jobDto.jobId"/>
-                    applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>
-                    <input  class="button" type="submit"/>
-                    </form>
+
+                    <ul class="accordion" data-accordion data-allow-all-closed="true">
+                        <li class="accordion-item" data-accordion-item>
+                            <a href="#" class="accordion-title"><h3>+ Application</h3></a>
+                            <div class="accordion-content" data-tab-content>
+                                <form ng-submit="addApplication()">
+                                    name:<input type="text" ng-model="application.name"/>
+                                    job id:<input type="text" ng-model="application.jobDto.jobId"/>
+                                    applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>
+                                    <input  class="button" type="submit"/>
+                                </form>
+                            </div>
+                        </li>
+                        <!-- ... -->
+                    </ul>
+
+
+
+
+
+
                 </div>
             </div>
         </div>

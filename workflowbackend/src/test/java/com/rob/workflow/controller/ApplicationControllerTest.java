@@ -5,7 +5,9 @@ import com.rob.workflow.dto.ApplicationDto;
 import com.rob.workflow.dto.JobDto;
 import com.rob.workflow.model.Applicant;
 import com.rob.workflow.model.Application;
+import com.rob.workflow.model.ApplicationHistory;
 import com.rob.workflow.model.Job;
+import com.rob.workflow.service.ApplicationHistoryService;
 import com.rob.workflow.service.ApplicationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
@@ -26,6 +30,9 @@ public class ApplicationControllerTest {
 
     @Mock
     ApplicationService applicationService;
+
+    @Mock
+    ApplicationHistoryService applicationHistoryService;
 
     @InjectMocks
     ApplicationController applicationController;
@@ -67,6 +74,7 @@ public class ApplicationControllerTest {
         Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
+        when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
@@ -79,6 +87,8 @@ public class ApplicationControllerTest {
         Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
+        when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
+
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
@@ -91,6 +101,8 @@ public class ApplicationControllerTest {
         Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "com.rob.workflow.model.shortworkflow.StartState");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
+        when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
+
         ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }

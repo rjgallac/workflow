@@ -3,7 +3,8 @@ package com.rob.workflow.controller;
 import com.rob.workflow.dto.ApplicationDto;
 import com.rob.workflow.mapper.ApplicationMapper;
 import com.rob.workflow.model.Application;
-import com.rob.workflow.model.Job;
+import com.rob.workflow.model.ApplicationHistory;
+import com.rob.workflow.service.ApplicationHistoryService;
 import com.rob.workflow.service.ApplicationService;
 import com.rob.workflow.service.JobServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.rob.workflow.mapper.ApplicationMapper.toDto;
@@ -25,9 +26,13 @@ public class ApplicationController {
 
     private JobServiceImpl jobService;
 
+    private ApplicationHistoryService applicationHistoryService;
+
     @Autowired
-    public ApplicationController(ApplicationService applicationService) {
+    public ApplicationController(ApplicationService applicationService, JobServiceImpl jobService, ApplicationHistoryService applicationHistoryService) {
         this.applicationService = applicationService;
+        this.jobService = jobService;
+        this.applicationHistoryService = applicationHistoryService;
     }
 
     @RequestMapping(value = "/application/", method = RequestMethod.POST)
@@ -40,6 +45,10 @@ public class ApplicationController {
     public List<ApplicationDto> getApplications(){
         return applicationService.getApplications().stream().map(ApplicationMapper::toDto).collect(Collectors.toList());
     }
+    @RequestMapping(value = "/application/{id}", method = RequestMethod.GET)
+    public ApplicationDto getApplication(@PathVariable Long id){
+        return ApplicationMapper.toDto(applicationService.getApplication(id));
+    }
 
     @RequestMapping(value = "/application/{id}", method = RequestMethod.PUT)
     public ResponseEntity<ApplicationDto> updateApplication(@RequestBody ApplicationDto applicationDto, @PathVariable Long id){
@@ -47,12 +56,21 @@ public class ApplicationController {
         //invoker action dynamically.
         application.restoreState();
         if(applicationDto.getUpdateAction() != null){
-            if(applicationDto.getUpdateAction().equals("accept"))
+            if(applicationDto.getUpdateAction().equals("accept")) {
                 application.next();
-            if(applicationDto.getUpdateAction().equals("reject"))
+                ApplicationHistory accept = applicationHistoryService.addHistory(new ApplicationHistory("accept", LocalDateTime.now()));
+                application.addHistory(accept);
+            }
+            if(applicationDto.getUpdateAction().equals("reject")) {
                 application.reject();
-            if(applicationDto.getUpdateAction().equals("withdraw"))
+                ApplicationHistory reject = applicationHistoryService.addHistory(new ApplicationHistory("reject", LocalDateTime.now()));
+                application.addHistory(reject);
+            }
+            if(applicationDto.getUpdateAction().equals("withdraw")) {
                 application.withdraw();
+                ApplicationHistory withdraw = applicationHistoryService.addHistory(new ApplicationHistory("withdraw", LocalDateTime.now()));
+                application.addHistory(withdraw);
+            }
         }
         application.setStateString();
         Application save = applicationService.save(application);

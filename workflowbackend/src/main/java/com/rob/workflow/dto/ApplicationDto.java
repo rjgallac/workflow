@@ -1,5 +1,7 @@
 package com.rob.workflow.dto;
 
+import java.util.List;
+
 public class ApplicationDto {
 
     private long applicationId;
@@ -17,6 +19,9 @@ public class ApplicationDto {
     private String updateAction;
 
     private String[] validStatuses;
+
+    private List<ApplicationHistoryDto> applicationHistoryDtos;
+
 
     public ApplicationDto(Long applicationId, String name, ApplicantDto applicantDto, JobDto jobDto, String status, String startState, String[] statuses) {
         this.applicationId = applicationId;
@@ -70,5 +75,13 @@ public class ApplicationDto {
 
     public String[] getValidStatuses() {
         return validStatuses;
+    }
+
+    public List<ApplicationHistoryDto> getApplicationHistoryDtos() {
+        return applicationHistoryDtos;
+    }
+
+    public void setApplicationHistoryDtos(List<ApplicationHistoryDto> applicationHistoryDtos) {
+        this.applicationHistoryDtos = applicationHistoryDtos;
     }
 }

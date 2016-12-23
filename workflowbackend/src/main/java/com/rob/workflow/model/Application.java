@@ -4,6 +4,8 @@ import com.rob.workflow.model.longworkflow.SlowStartState;
 import com.rob.workflow.model.shortworkflow.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "application")
 @Entity
@@ -29,6 +31,9 @@ public class Application {
 
     private String workflowStateString;
 
+    @OneToMany
+    List<ApplicationHistory> applicationHistory;
+
     public Application() {
     }
 
@@ -38,12 +43,17 @@ public class Application {
         this.job = job;
         this.applicant = applicant;
         this.workflowState = new WorkflowState();
+        this.applicationHistory = new ArrayList<>();
 //        if(startState.equals("slow")){
 //            this.workflowState.setState(new SlowStartState());
 //        }else{
 //            this.workflowState.setState(new StartState());
 //        }
         this.workflowStateString = workflowState.getState().getClass().getName();
+    }
+
+    public void addHistory(ApplicationHistory applicationHistory){
+        this.applicationHistory.add(applicationHistory);
     }
 
     public String getName() {
@@ -68,6 +78,10 @@ public class Application {
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
+    }
+
+    public List<ApplicationHistory> getApplicationHistory() {
+        return applicationHistory;
     }
 
     public void next(){
