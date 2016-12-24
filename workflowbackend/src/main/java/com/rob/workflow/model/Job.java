@@ -25,6 +25,9 @@ public class Job {
 
     private String workflowStateString;
 
+    @Transient
+    private String updateAction;
+
     public Job() {
     }
 
@@ -82,5 +85,13 @@ public class Job {
 
     public String getApplicationStartState() {
         return applicationStartState;
+    }
+
+    public String getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(String updateAction) {
+        this.updateAction = updateAction;
     }
 }

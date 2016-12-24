@@ -23,6 +23,14 @@ public class JobServiceImpl implements JobService{
     }
 
     public Job saveJob(Job job){
+        job.restoreState();
+        if(job.getUpdateAction() != null){
+            if(job.getUpdateAction().equals("next"))
+                job.next();
+            if(job.getUpdateAction().equals("previous"))
+                job.previous();
+        }
+        job.setStateString();
         return jobRepository.save(job);
     }
 

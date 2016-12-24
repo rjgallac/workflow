@@ -55,17 +55,8 @@ public class JobController {
     public ResponseEntity<JobDto> updateJobs(@RequestBody JobDto jobDto, @PathVariable Long id){
         Job job = jobService.getJob(id).get();
         //invoker action dynamically.
-        job.restoreState();
-        if(jobDto.getUpdateAction() != null){
-            if(jobDto.getUpdateAction().equals("next"))
-                job.next();
-            if(jobDto.getUpdateAction().equals("previous"))
-                job.previous();
-        }
-        job.setStateString();
         Job save = jobService.saveJob(job);
-        JobDto jobDto1 = toDto(save);
-        return new ResponseEntity<>(jobDto1, null, HttpStatus.OK);
+        return new ResponseEntity<>(toDto(save), null, HttpStatus.OK);
     }
     @RequestMapping(value = "/job/{id}", method = RequestMethod.DELETE)
     public void deleteJob(@PathVariable Long id){

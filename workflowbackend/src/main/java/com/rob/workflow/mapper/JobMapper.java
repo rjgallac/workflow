@@ -6,7 +6,9 @@ import com.rob.workflow.model.Job;
 public class JobMapper {
 
     public static Job toEntity(JobDto jobDto){
-        return new Job(jobDto.getJobId(), jobDto.getName(), "com.rob.workflow.model.shortworkflow.StartState");
+        Job job = new Job(jobDto.getJobId(), jobDto.getName(), "com.rob.workflow.model.shortworkflow.StartState");
+        job.setUpdateAction(jobDto.getUpdateAction());
+        return job;
     }
 
     public static JobDto toDto(Job job){

@@ -1,6 +1,9 @@
 package com.rob.workflow.service;
 
 import com.rob.workflow.model.Job;
+import com.rob.workflow.model.jobstate.JobStartState;
+import com.rob.workflow.model.jobstate.JobState;
+import com.rob.workflow.model.shortworkflow.WorkflowState;
 import com.rob.workflow.repository.JobRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +33,9 @@ public class JobServiceImplTest {
 
     @Test
     public void saveJob() throws Exception {
-        when(jobRepository.save(any(Job.class))).thenReturn(new Job());
-        jobService.saveJob(new Job());
+        Job job = new Job(null, "asdf", "com.rob.workflow.model.jobstate.JobStartState");
+        when(jobRepository.save(any(Job.class))).thenReturn(job);
+        jobService.saveJob(job);
     }
 
     @Test
