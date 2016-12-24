@@ -29,6 +29,10 @@ public class Application {
     @Transient
     private WorkflowState workflowState;
 
+    @Transient
+    private String updateAction;
+
+
     private String workflowStateString;
 
     @OneToMany
@@ -131,5 +135,13 @@ public class Application {
     public void restoreState(){
         this.workflowState = new WorkflowState();
         this.getWorkflowState().setStateFromDB(this.getWorkflowStateString());
+    }
+
+    public String getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(String updateAction) {
+        this.updateAction = updateAction;
     }
 }

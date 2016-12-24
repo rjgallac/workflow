@@ -33,10 +33,7 @@ public class ApplicantController {
 
     @RequestMapping(value = "/applicant/", method = RequestMethod.GET)
     public ResponseEntity<List<ApplicantDto>> getApplicant(){
-        return new ResponseEntity<>(applicantService.getApplicants()
-                .stream()
-                .map(ApplicantMapper::toDto)
-                .collect(Collectors.toList()), null, HttpStatus.OK);
+        return new ResponseEntity<>(applicantService.getApplicants().stream().map(ApplicantMapper::toDto).collect(Collectors.toList()), null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/applicant/{id}", method = RequestMethod.GET)

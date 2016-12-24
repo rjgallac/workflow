@@ -2,6 +2,7 @@ package com.rob.workflow.service;
 
 import com.rob.workflow.model.Applicant;
 import com.rob.workflow.model.Application;
+import com.rob.workflow.model.ApplicationHistory;
 import com.rob.workflow.model.Job;
 import com.rob.workflow.repository.ApplicantRepository;
 import com.rob.workflow.repository.ApplicationRepository;
@@ -9,6 +10,7 @@ import com.rob.workflow.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,11 +22,14 @@ class ApplicationServiceImpl implements ApplicationService{
 
     private final JobRepository jobRepository;
 
+    private ApplicationHistoryService applicationHistoryService;
+
     @Autowired
-    ApplicationServiceImpl(ApplicationRepository applicationRepository, ApplicantRepository applicantRepository, JobRepository jobRepository) {
+    ApplicationServiceImpl(ApplicationRepository applicationRepository, ApplicantRepository applicantRepository, JobRepository jobRepository, ApplicationHistoryService applicationHistoryService) {
         this.applicationRepository = applicationRepository;
         this.applicantRepository = applicantRepository;
         this.jobRepository = jobRepository;
+        this.applicationHistoryService = applicationHistoryService;
     }
 
     public Application createApplication(Application application){
@@ -46,6 +51,27 @@ class ApplicationServiceImpl implements ApplicationService{
     }
 
     public Application save(Application application) {
+
+        application.restoreState();
+        if(application.getUpdateAction() != null){
+            if(application.getUpdateAction().equals("accept")) {
+                application.next();
+                ApplicationHistory accept = applicationHistoryService.addHistory(new ApplicationHistory("accept", LocalDateTime.now()));
+                application.addHistory(accept);
+            }
+            if(application.getUpdateAction().equals("reject")) {
+                application.reject();
+                ApplicationHistory reject = applicationHistoryService.addHistory(new ApplicationHistory("reject", LocalDateTime.now()));
+                application.addHistory(reject);
+            }
+            if(application.getUpdateAction().equals("withdraw")) {
+                application.withdraw();
+                ApplicationHistory withdraw = applicationHistoryService.addHistory(new ApplicationHistory("withdraw", LocalDateTime.now()));
+                application.addHistory(withdraw);
+            }
+        }
+        application.setStateString();
+
         return applicationRepository.save(application);
     }
 

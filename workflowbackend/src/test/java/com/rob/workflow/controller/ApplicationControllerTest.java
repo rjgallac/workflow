@@ -61,7 +61,7 @@ public class ApplicationControllerTest {
         Application application = new Application(1L, "test", new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"), new Applicant(1L, "test"), "test");
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
-        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
 
@@ -75,7 +75,7 @@ public class ApplicationControllerTest {
         when(applicationService.getApplication(anyLong())).thenReturn(application);
         when(applicationService.save(any(Application.class))).thenReturn(application);
         when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
-        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
     @Test
@@ -89,7 +89,7 @@ public class ApplicationControllerTest {
         when(applicationService.save(any(Application.class))).thenReturn(application);
         when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
 
-        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
     @Test
@@ -103,7 +103,7 @@ public class ApplicationControllerTest {
         when(applicationService.save(any(Application.class))).thenReturn(application);
         when(applicationHistoryService.addHistory(any(ApplicationHistory.class))).thenReturn(new ApplicationHistory("asdf", LocalDateTime.now()));
 
-        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto, 1L);
+        ResponseEntity<ApplicationDto> applicationDtoResponseEntity = applicationController.updateApplication(applicationDto);
         assertEquals("test", applicationDtoResponseEntity.getBody().getName());
     }
 

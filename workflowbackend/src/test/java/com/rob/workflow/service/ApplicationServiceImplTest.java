@@ -3,6 +3,8 @@ package com.rob.workflow.service;
 import com.rob.workflow.model.Applicant;
 import com.rob.workflow.model.Application;
 import com.rob.workflow.model.Job;
+import com.rob.workflow.model.shortworkflow.StartState;
+import com.rob.workflow.model.shortworkflow.WorkflowState;
 import com.rob.workflow.repository.ApplicantRepository;
 import com.rob.workflow.repository.ApplicationRepository;
 import com.rob.workflow.repository.JobRepository;
@@ -55,7 +57,9 @@ public class ApplicationServiceImplTest {
     }
     @Test
     public void saveApplication(){
-        applicationService.save(new Application());
+        Application application = new Application();
+        application.setWorkflowStateString("com.rob.workflow.model.shortworkflow.StartState");
+        applicationService.save(application);
 
     }
 
