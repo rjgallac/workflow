@@ -1,19 +1,15 @@
-package com.rob.workflow.model;
+package com.rob.workflow.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class ReviewerDto {
 
-@Entity
-public class Reviewer {
-
-    @Id
-    @GeneratedValue
     private Long reviewerId;
 
     private String name;
 
-    public Reviewer(Long reviewerId, String name) {
+    public ReviewerDto() {
+    }
+
+    public ReviewerDto(Long reviewerId, String name) {
         this.reviewerId = reviewerId;
         this.name = name;
     }
