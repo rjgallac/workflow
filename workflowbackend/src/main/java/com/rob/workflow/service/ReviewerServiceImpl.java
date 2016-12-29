@@ -19,4 +19,9 @@ public class ReviewerServiceImpl implements ReviewerService {
     public void saveReviewer(Reviewer reviewer) {
         reviewerRepository.save(reviewer);
     }
+
+    @Override
+    public Reviewer findOne(Long reviewerId) {
+        return reviewerRepository.findOne(reviewerId);
+    }
 }

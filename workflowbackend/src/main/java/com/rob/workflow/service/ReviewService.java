@@ -1,7 +1,7 @@
 package com.rob.workflow.service;
 
-import com.rob.workflow.model.Reviewer;
+import com.rob.workflow.model.Review;
 
 public interface ReviewService {
-    void saveReviewer(Reviewer reviewer);
+    void saveReview(Review review);
 }

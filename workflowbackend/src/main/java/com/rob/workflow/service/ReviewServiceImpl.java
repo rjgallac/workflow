@@ -1,6 +1,8 @@
 package com.rob.workflow.service;
 
+import com.rob.workflow.model.Review;
 import com.rob.workflow.model.Reviewer;
+import com.rob.workflow.repository.ReviewRepository;
 import com.rob.workflow.repository.ReviewerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +11,14 @@ import org.springframework.stereotype.Service;
 public class ReviewServiceImpl implements ReviewService{
 
     @Autowired
-    private ReviewerRepository reviewerRepository;
+    private ReviewRepository reviewRepository;
 
-    public ReviewServiceImpl(ReviewerRepository reviewerRepository) {
-        this.reviewerRepository = reviewerRepository;
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
     }
 
     @Override
-    public void saveReviewer(Reviewer reviewer) {
-        reviewerRepository.save(reviewer);
+    public void saveReview(Review review) {
+        reviewRepository.save(review);
     }
 }

@@ -11,6 +11,9 @@ public class ReviewDto {
 
     private int score;
 
+    public ReviewDto() {
+    }
+
     public ReviewDto(Long reviewId, Long applicationId, Long reviewerId, int stage, int score) {
         this.reviewId = reviewId;
         this.applicationId = applicationId;
