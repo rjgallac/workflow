@@ -20,6 +20,9 @@ public class Review {
 
     private int score;
 
+    public Review() {
+    }
+
     public Review(Long reviewId, Application application, Reviewer reviewer, Stage stage, int score) {
         this.reviewId = reviewId;
         this.application = application;

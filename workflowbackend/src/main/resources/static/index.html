@@ -166,7 +166,7 @@
 
 
 
-    <li class="accordion-item" data-accordion-item>
+    <li class="accordion-item" data-accordion-item  ng-controller="reviewCtrl">
         <a href="#" class="accordion-title"><h3>Review</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
@@ -184,8 +184,8 @@
                 <div class="small-2 large-3 columns">
                     <h2>+ Review</h2>
                     <form ng-submit="addReview()">
-                        applicationId:<input type="text" ng-model="reviewDto.applicationId"/>
-                        reviewer Id:<input type="text" ng-model="reviewDto.reviewerId"/>
+                        applicationId:<input type="text" ng-model="review.applicationId"/>
+                        reviewer Id:<input type="text" ng-model="review.reviewerId"/>
                         <input class="button" type="submit"/>
                     </form>
                 </div>
@@ -205,8 +205,10 @@
 <script src="app.js"></script>
 <script src="services/services.js"></script>
 <script src="services/reviewerService.js"></script>
+<script src="services/reviewService.js"></script>
 <script src="controllers/controllers.js"></script>
 <script src="controllers/reviewerController.js"></script>
+<script src="controllers/reviewController.js"></script>
 
 <script>
   $(document).foundation();

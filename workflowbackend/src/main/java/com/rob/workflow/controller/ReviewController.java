@@ -10,10 +10,17 @@ import com.rob.workflow.service.ApplicationService;
 import com.rob.workflow.service.ReviewServiceImpl;
 import com.rob.workflow.service.ReviewerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 public class ReviewController {
@@ -34,6 +41,16 @@ public class ReviewController {
         Application application = applicationService.getApplication(reviewDto.getApplicationId());
         Review review = new Review(null,application, reviewer, Stage.START, 0);
         reviewService.saveReview(review);
+    }
+
+    @RequestMapping(value = "/review/", method = RequestMethod.GET)
+    public ResponseEntity<List<ReviewDto>> getReviews(){
+        Optional<List<Review>> reviewers = reviewService.getReviews();
+        if(reviewers.isPresent()) {
+            return new ResponseEntity<>(reviewers.get().stream().map(ReviewMapper::toDto).collect(toList()), null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,null, HttpStatus.NOT_FOUND);
+        }
     }
 
 }
