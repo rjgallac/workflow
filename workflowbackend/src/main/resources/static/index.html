@@ -139,18 +139,74 @@
     </li>
 
 
+    <li class="accordion-item" data-accordion-item ng-controller="reviewerCtrl">
+        <a href="#" class="accordion-title"><h3>Reviewer</h3></a>
+        <div class="accordion-content" data-tab-content>
+            <div class="row">
+                <div class="large-9 columns">
+                    <table border="1">
+                        <tr><th>id</th><th>Reviewer name</th><th>delete</th></tr>
+                        <tr ng-repeat="reviewer in reviewers">
+                            <td>{{reviewer.applicantId}}</td>
+                            <td>{{reviewer.name}}</td>
+                            <td><a href class="button" ng-click="deleteReviewer($index)">delete</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="small-2 large-3 columns">
+                    <h2>+ Reviewer</h2>
+                    <form ng-submit="addReviewer()">
+                        name:<input type="text" ng-model="reviewer.name"/>
+                        <input class="button" type="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </li>
+
+
+
+    <li class="accordion-item" data-accordion-item>
+        <a href="#" class="accordion-title"><h3>Review</h3></a>
+        <div class="accordion-content" data-tab-content>
+            <div class="row">
+                <div class="large-9 columns">
+                    <table border="1">
+                        <tr><th>id</th><th>applicationId</th><th>reviewerId</th><th>delete</th></tr>
+                        <tr ng-repeat="review in reviews">
+                            <td>{{review.reviewId}}</td>
+                            <td>{{review.applicationId}}</td>
+                            <td>{{review.reviewerId}}</td>
+                            <td><a href class="button" ng-click="deleteReview($index)">delete</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="small-2 large-3 columns">
+                    <h2>+ Review</h2>
+                    <form ng-submit="addReview()">
+                        applicationId:<input type="text" ng-model="reviewDto.applicationId"/>
+                        reviewer Id:<input type="text" ng-model="reviewDto.reviewerId"/>
+                        <input class="button" type="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </li>
+
 
 </ul>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
 <script src="css/foundation/js/vendor/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
 <script src="css/foundation/js/vendor/foundation.js"></script>
 <script src="app.js"></script>
 <script src="services/services.js"></script>
+<script src="services/reviewerService.js"></script>
 <script src="controllers/controllers.js"></script>
+<script src="controllers/reviewerController.js"></script>
 
 <script>
   $(document).foundation();

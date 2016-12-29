@@ -13,6 +13,9 @@ public class Reviewer {
 
     private String name;
 
+    public Reviewer() {
+    }
+
     public Reviewer(Long reviewerId, String name) {
         this.reviewerId = reviewerId;
         this.name = name;
