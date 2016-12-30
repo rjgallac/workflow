@@ -7,7 +7,7 @@
     <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
     <link rel='stylesheet' href='css/main.css'/>
 </head>
-<body  class="container" ng-controller="workflowCtrl">
+<body  class="container">
 <div class="row">
     <div class="small-2 large-12 columns">
         <h1>Workflow</h1>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="large-12 column">
 <ul class="accordion" data-accordion>
-    <li class="accordion-item is-active" data-accordion-item>
+    <li class="accordion-item is-active" data-accordion-item ng-controller="applicationCtrl">
         <a href="#" class="accordion-title"><h3>Applications</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </li>
-    <li class="accordion-item" data-accordion-item>
+    <li class="accordion-item" data-accordion-item ng-controller="jobCtrl">
         <a href="#" class="accordion-title"><h3>Jobs</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
@@ -113,7 +113,7 @@
         </div>
     </li>
 
-    <li class="accordion-item" data-accordion-item>
+    <li class="accordion-item" data-accordion-item ng-controller="applicantCtrl">
         <a href="#" class="accordion-title"><h3>Applicants</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
@@ -166,7 +166,7 @@
 
 
 
-    <li class="accordion-item" data-accordion-item  ng-controller="reviewCtrl">
+    <li class="accordion-item" data-accordion-item ng-controller="reviewCtrl">
         <a href="#" class="accordion-title"><h3>Review</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
@@ -203,12 +203,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
 <script src="css/foundation/js/vendor/foundation.js"></script>
 <script src="app.js"></script>
-<script src="services/services.js"></script>
 <script src="services/reviewerService.js"></script>
 <script src="services/reviewService.js"></script>
-<script src="controllers/controllers.js"></script>
+<script src="services/applicantService.js"></script>
+<script src="services/applicationService.js"></script>
+<script src="services/jobService.js"></script>
 <script src="controllers/reviewerController.js"></script>
 <script src="controllers/reviewController.js"></script>
+<script src="controllers/jobController.js"></script>
+<script src="controllers/applicantController.js"></script>
+<script src="controllers/applicationController.js"></script>
 
 <script>
   $(document).foundation();
