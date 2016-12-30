@@ -3,7 +3,17 @@ angular.module('workflowApp')
         applications = [];
         $scope.application = {};
         $scope.application.startState = "normal";
+        jobs = [];
+        applicants = [];
 
+        jobService.getJobs().then(function(data){
+            $scope.jobs = data;
+            console.log(data);
+        })
+
+        applicantService.getApplicants().then(function(data){
+            $scope.applicants = data;
+        })
         applicationService.getApplications().then(function(data){
             $scope.applications = data;
         })
