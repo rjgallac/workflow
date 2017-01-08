@@ -45,10 +45,7 @@ public class StepsDefs {
         System.out.println(browser.getCurrentUrl());
     }
 
-    @Given("^I wait$")
-    public void I_wait() throws InterruptedException {
-        browser.wait();
-    }
+
 
     @When("^I enter the \"([^\"]*)\"$")
     public void I_enter_(String text) {
@@ -66,6 +63,14 @@ public class StepsDefs {
         browser.get("http://google.co.uk/");
         System.out.println(browser.getCurrentUrl());
     }
+    @When("I wait")
+    public void iWait(){
+        try {
+            browser.wait(5000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     @Then("I see google")
     public void assert_google(){
         assertEquals("Google", browser.getTitle());
@@ -76,6 +81,39 @@ public class StepsDefs {
 
         browser.findElement(By.id("coursemenu")).click();
 
+    }
+    @When("^I click the jobsaccord$")
+    public void I_click_jobsaccord() {
+        browser.findElement(By.id("jobsaccord")).click();
+    }
+    @When("^I click the job menu$")
+    public void I_click_job_menu() {
+        browser.findElement(By.id("jobmenu")).click();
+    }
+    @When("^I enter the job \"([^\"]*)\"$")
+    public void I_enter_job(String text) {
+        browser.findElement(By.id("job")).sendKeys(text);
+    }
+    @When("^I click the add job$")
+    public void I_click_add_job_menu() {
+        browser.findElement(By.id("addjob")).click();
+    }
+
+    @When("^I click the applicantaccord$")
+    public void I_click_applicantaccord() {
+        browser.findElement(By.id("applicantaccord$")).click();
+    }
+    @When("^I click the applicant menu$")
+    public void I_click_applicant_menu() {
+        browser.findElement(By.id("applicantform")).click();
+    }
+    @When("^I enter the applicant \"([^\"]*)\"$")
+    public void I_enter_applicant(String text) {
+        browser.findElement(By.id("applicantinput")).sendKeys(text);
+    }
+    @When("^I click the add applicant$")
+    public void I_click_add_applicant() {
+        browser.findElement(By.id("addapplicant")).click();
     }
 
 
