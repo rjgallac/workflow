@@ -36,11 +36,17 @@ public class ReviewController {
 
 
     @RequestMapping(value = "/review/", method = RequestMethod.POST)
-    public void saveReviewer(@RequestBody ReviewDto reviewDto){
+    public ResponseEntity<ReviewDto> saveReviewer(@RequestBody ReviewDto reviewDto){
         Reviewer reviewer = reviewerService.findOne(reviewDto.getReviewerId());
         Application application = applicationService.getApplication(reviewDto.getApplicationId());
         Review review = new Review(null,application, reviewer, Stage.START, 0);
-        reviewService.saveReview(review);
+        Optional<Review> review1 = reviewService.saveReview(review);
+        if(review1.isPresent()){
+            ReviewDto reviewDto1 = ReviewMapper.toDto(review1.get());
+            return new ResponseEntity<ReviewDto>(reviewDto1, null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<ReviewDto>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(value = "/review/", method = RequestMethod.GET)

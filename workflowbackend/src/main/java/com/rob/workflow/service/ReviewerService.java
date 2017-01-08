@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewerService {
-    void saveReviewer(Reviewer reviewer);
+    Optional<Reviewer> saveReviewer(Reviewer reviewer);
 
     Reviewer findOne(Long reviewerId);
 

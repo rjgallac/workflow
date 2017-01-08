@@ -19,8 +19,8 @@ public class ReviewerServiceImpl implements ReviewerService {
     }
 
     @Override
-    public void saveReviewer(Reviewer reviewer) {
-        reviewerRepository.save(reviewer);
+    public Optional<Reviewer> saveReviewer(Reviewer reviewer) {
+        return Optional.of(reviewerRepository.save(reviewer));
     }
 
     @Override

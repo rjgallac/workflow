@@ -30,8 +30,13 @@ public class ReviewerController {
 
 
     @RequestMapping(value = "/reviewer/", method = RequestMethod.POST)
-    public void saveReviewer(@RequestBody ReviewerDto reviewerDto){
-        reviewerService.saveReviewer(ReviewerMapper.toEntity(reviewerDto));
+    public ResponseEntity<ReviewerDto> saveReviewer(@RequestBody ReviewerDto reviewerDto){
+        Optional<Reviewer> reviewer = reviewerService.saveReviewer(ReviewerMapper.toEntity(reviewerDto));
+        if(reviewer.isPresent()){
+            return new ResponseEntity<ReviewerDto>(ReviewerMapper.toDto(reviewer.get()), null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<ReviewerDto>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(value = "/reviewer/", method = RequestMethod.GET)

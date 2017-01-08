@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
     <link rel='stylesheet' href='css/main.css'/>
+    <title>workflow</title>
 </head>
 <body  class="container">
 <div class="row">
@@ -173,11 +174,11 @@
                     <h2>+ Review</h2>
                     <form ng-submit="addReview()">
                         <!--applicationId:<input type="text" ng-model="review.applicationId"/>-->
-                        <select ng-options="application.applicationId as application.name for application in applications track by application.applicationId" ng-model="review.applicationId"></select>
-
+                        <label>Application:<select ng-options="application.applicationId as application.name for application in applications track by application.applicationId" ng-model="review.applicationId"></select>
+                        </label>
                         <!--reviewer Id:<input type="text" ng-model="review.reviewerId"/>-->
-                        <select ng-options="reviewer.reviewerId as reviewer.name for reviewer in reviewers track by reviewer.reviewerId" ng-model="review.reviewerId"></select>
-
+                        <label>Reviewer:<select ng-options="reviewer.reviewerId as reviewer.name for reviewer in reviewers track by reviewer.reviewerId" ng-model="review.reviewerId"></select>
+                        </label>
                         <input class="button" type="submit"/>
                     </form>
                 </div>
