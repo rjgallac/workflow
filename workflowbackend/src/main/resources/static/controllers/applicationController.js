@@ -9,14 +9,12 @@ angular.module('workflowApp')
         $scope.$on("apps", function(evt, data){
             $scope.getJobs();
             $scope.getApplicants();
-            console.log("in apps");
         })
 
 
         $scope.getJobs = function(){
             jobService.getJobs().then(function(data){
                 $scope.jobs = data;
-                console.log(data);
             })
         }
 

@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -114,6 +115,36 @@ public class StepsDefs {
     @When("^I click the add applicant$")
     public void I_click_add_applicant() {
         browser.findElement(By.id("addapplicant")).click();
+    }
+
+
+    @When("^I click the applicationAccord$")
+    public void I_click_applicationAccord() {
+        browser.findElement(By.id("applicationAccord")).click();
+    }
+    @When("^I click the appmenu$")
+    public void I_click_appmenu() {
+        browser.findElement(By.id("appmenu")).click();
+    }
+    @When("^I enter the appname \"([^\"]*)\"$")
+    public void I_enter_appname(String text) {
+        browser.findElement(By.id("appname")).sendKeys(text);
+    }
+
+    @When("^I select job$")
+    public void selectJob(){
+        Select select = new Select(browser.findElement(By.id("jobselect")));
+        select.selectByIndex(0);
+    }
+    @When("^I select applicant$")
+    public void selectApplicant(){
+        Select select = new Select(browser.findElement(By.id("applicantselect")));
+        select.selectByIndex(0);
+    }
+
+    @When("^I click the addapp$")
+    public void I_click_addapp() {
+        browser.findElement(By.id("addapp")).click();
     }
 
 
