@@ -6,14 +6,27 @@ angular.module('workflowApp')
         jobs = [];
         applicants = [];
 
-        jobService.getJobs().then(function(data){
-            $scope.jobs = data;
-            console.log(data);
+        $scope.$on("apps", function(evt, data){
+            $scope.getJobs();
+            $scope.getApplicants();
+            console.log("in apps");
         })
 
-        applicantService.getApplicants().then(function(data){
-            $scope.applicants = data;
-        })
+
+        $scope.getJobs = function(){
+            jobService.getJobs().then(function(data){
+                $scope.jobs = data;
+                console.log(data);
+            })
+        }
+
+        $scope.getApplicants = function(){
+            applicantService.getApplicants().then(function(data){
+                $scope.applicants = data;
+            })
+        }
+        $scope.getJobs();
+        $scope.getApplicants();
         applicationService.getApplications().then(function(data){
             $scope.applications = data;
         })

@@ -12,6 +12,7 @@ angular.module('workflowApp')
             $scope.addApplicant = function(){
                 applicantService.addApplicant($scope.applicantDto).then(function(data){
                     $scope.applicants.push(data);
+                    $scope.$emit("updateapps","appsupdate")
                 });
             }
         })

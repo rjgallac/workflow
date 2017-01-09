@@ -14,6 +14,8 @@ angular.module('workflowApp')
         $scope.addJob = function(){
             jobService.addJob($scope.jobDto).then(function(data){
                 $scope.jobs.push(data);
+                $scope.$emit("updateapps","appsupdate")
+
             })
         }
         $scope.updateJob = function(index, action){
