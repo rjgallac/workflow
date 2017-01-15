@@ -6,6 +6,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -44,22 +45,27 @@ public class StepsDefs {
     public void I_click_jobsaccord() {
         browser.findElement(By.id("jobsaccord")).click();
     }
+
     @When("^I click the job menu$")
     public void I_click_job_menu() {
         browser.findElement(By.id("jobmenu")).click();
     }
-    @When("^I enter the job$")
-    public void I_enter_job() {
-        browser.findElement(By.id("jobinput")).sendKeys("sdfsd");
+
+    @When("^I enter the job \"([^\"]*)\" in job box$")
+    public void I_enter_job(String text) {
+        WebElement jobinput = browser.findElement(By.id("jobinput"));
+        jobinput.sendKeys(text);
     }
+
     @When("^I click the add job$")
     public void I_click_add_job_menu() {
         browser.findElement(By.id("addjobbtn")).click();
     }
 
     @When("^I click the applicantaccord$")
-    public void I_click_applicantaccord() {
+    public void I_click_applicantaccord() throws InterruptedException {
         browser.findElement(By.id("applicantaccord$")).click();
+        Thread.sleep(500L);
     }
     @When("^I click the applicant menu$")
     public void I_click_applicant_menu() {
@@ -92,7 +98,7 @@ public class StepsDefs {
         Select select = new Select(browser.findElement(By.id("jobselect")));
 //        select.selectByIndex(0);
 //        select.deselectAll();
-        select.selectByVisibleText("sdfsd");
+        select.selectByVisibleText("jobby");
     }
     @When("^I select applicant$")
     public void selectApplicant(){
@@ -106,5 +112,7 @@ public class StepsDefs {
     public void I_click_addapp() {
         browser.findElement(By.id("addapp")).click();
     }
+
+
 
 }
