@@ -28,7 +28,10 @@ public class StepsDefs {
 
     public StepsDefs() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", "/home/bob/chromedriver");
-        browser = new ChromeDriver();
+
+//        browser = new ChromeDriver();
+        browser = new RemoteWebDriver(new URL("http://127.0.0.1:8910"), DesiredCapabilities.phantomjs());
+        browser.manage().window().setSize(new Dimension(1920,1080));
     }
 
     @Given("^I am on the home page$")
