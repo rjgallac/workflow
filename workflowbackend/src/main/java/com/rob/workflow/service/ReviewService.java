@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ReviewService {
     Optional<Review> saveReview(Review review);
     Optional<List<Review>> getReviews();
+
+    void deleteReview(Long id);
 }

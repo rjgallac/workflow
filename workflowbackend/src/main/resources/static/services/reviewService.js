@@ -23,4 +23,15 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+        this.deleteReview = function(id){
+            var defer = $q.defer();
+            $http.delete('/review/'+id)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
     });

@@ -6,23 +6,24 @@ angular.module('workflowApp')
         jobs = [];
         applicants = [];
 
-        $scope.$on("apps", function(evt, data){
-            $scope.getJobs();
-            $scope.getApplicants();
-        })
-
+        $scope.getApplicants = function(){
+            applicantService.getApplicants().then(function(data){
+                $scope.applicants = data;
+            })
+        }
 
         $scope.getJobs = function(){
             jobService.getJobs().then(function(data){
                 $scope.jobs = data;
             })
         }
+        $scope.$on("jobsUpdated", function(evt, data){
+            $scope.getJobs();
+        })
+        $scope.$on("updateApplicants", function(evt, data){
+            $scope.getApplicants();
+        })
 
-        $scope.getApplicants = function(){
-            applicantService.getApplicants().then(function(data){
-                $scope.applicants = data;
-            })
-        }
         $scope.getJobs();
         $scope.getApplicants();
         applicationService.getApplications().then(function(data){
@@ -32,12 +33,15 @@ angular.module('workflowApp')
         $scope.addApplication = function(){
             applicationService.addApplication($scope.application).then(function(data){
                 $scope.applications.push(data);
+                $scope.$emit("applicationsUpdate","appsupdate")
             });
         }
 
         $scope.deleteApplication = function(index){
             applicationService.deleteApplication($scope.applications[index].applicationId);
             $scope.applications.splice(index,1);
+            $scope.$emit("applicationsUpdate","appsupdate")
+
         }
 
         $scope.updateApplication = function(index, action){

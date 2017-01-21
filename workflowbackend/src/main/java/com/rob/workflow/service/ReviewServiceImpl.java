@@ -28,4 +28,9 @@ public class ReviewServiceImpl implements ReviewService{
     public Optional<List<Review>> getReviews() {
         return Optional.of((List)reviewRepository.findAll());
     }
+
+    @Override
+    public void deleteReview(Long id) {
+        reviewRepository.delete(id);
+    }
 }

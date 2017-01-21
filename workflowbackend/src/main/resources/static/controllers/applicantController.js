@@ -5,6 +5,8 @@ angular.module('workflowApp')
             $scope.deleteApplicant = function(index){
                 applicantService.deleteApplicant($scope.applicants[index].applicantId);
                 $scope.applicants.splice(index,1);
+                $scope.$emit("updateapps","appsupdate")
+
             }
             applicantService.getApplicants().then(function(data){
                 $scope.applicants = data;
@@ -12,7 +14,7 @@ angular.module('workflowApp')
             $scope.addApplicant = function(){
                 applicantService.addApplicant($scope.applicantDto).then(function(data){
                     $scope.applicants.push(data);
-                    $scope.$emit("updateapps","appsupdate")
+                    $scope.$emit("applicantsUpdated","appsupdate")
                 });
             }
         })

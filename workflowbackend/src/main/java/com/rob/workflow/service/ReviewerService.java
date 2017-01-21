@@ -11,4 +11,6 @@ public interface ReviewerService {
     Reviewer findOne(Long reviewerId);
 
     Optional<List<Reviewer>> getReviewers();
+
+    void deleteReview(Long id);
 }

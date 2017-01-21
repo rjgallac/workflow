@@ -31,4 +31,9 @@ public class ReviewerServiceImpl implements ReviewerService {
     public Optional<List<Reviewer>> getReviewers() {
         return Optional.of((List)reviewerRepository.findAll());
     }
+
+    @Override
+    public void deleteReview(Long id) {
+        reviewerRepository.delete(id);
+    }
 }

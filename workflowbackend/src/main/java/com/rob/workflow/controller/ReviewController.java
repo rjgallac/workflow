@@ -12,10 +12,7 @@ import com.rob.workflow.service.ReviewerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +20,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 @RestController
+@RequestMapping(value = "/review")
 public class ReviewController {
 
     @Autowired
@@ -34,8 +32,7 @@ public class ReviewController {
     @Autowired
     ReviewerService reviewerService;
 
-
-    @RequestMapping(value = "/review/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ReviewDto> saveReviewer(@RequestBody ReviewDto reviewDto){
         Reviewer reviewer = reviewerService.findOne(reviewDto.getReviewerId());
         Application application = applicationService.getApplication(reviewDto.getApplicationId());
@@ -49,7 +46,7 @@ public class ReviewController {
         }
     }
 
-    @RequestMapping(value = "/review/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ReviewDto>> getReviews(){
         Optional<List<Review>> reviewers = reviewService.getReviews();
         if(reviewers.isPresent()) {
@@ -57,6 +54,11 @@ public class ReviewController {
         }else{
             return new ResponseEntity<>(null,null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public void deleteReview(@PathVariable Long id){
+        reviewService.deleteReview(id);
     }
 
 }
