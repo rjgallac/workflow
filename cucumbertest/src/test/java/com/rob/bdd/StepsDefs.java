@@ -42,13 +42,15 @@ public class StepsDefs {
     }
 
     @When("^I click the jobsaccord$")
-    public void I_click_jobsaccord() {
+    public void I_click_jobsaccord() throws InterruptedException {
         browser.findElement(By.id("jobsaccord")).click();
+        Thread.sleep(500L);
     }
 
     @When("^I click the job menu$")
-    public void I_click_job_menu() {
+    public void I_click_job_menu() throws InterruptedException {
         browser.findElement(By.id("jobmenu")).click();
+        Thread.sleep(500L);
     }
 
     @When("^I enter the job \"([^\"]*)\" in job box$")
@@ -58,8 +60,10 @@ public class StepsDefs {
     }
 
     @When("^I click the add job$")
-    public void I_click_add_job_menu() {
+    public void I_click_add_job_menu() throws InterruptedException {
         browser.findElement(By.id("addjobbtn")).click();
+        Thread.sleep(500L);
+
     }
 
     @When("^I click the applicantaccord$")
@@ -81,12 +85,16 @@ public class StepsDefs {
     }
 
     @When("^I click the applicationAccord$")
-    public void I_click_applicationAccord() {
+    public void I_click_applicationAccord() throws InterruptedException {
         browser.findElement(By.id("applicationAccord")).click();
+        Thread.sleep(500L);
+
     }
     @When("^I click the appmenu$")
-    public void I_click_appmenu() {
+    public void I_click_appmenu() throws InterruptedException {
+
         browser.findElement(By.id("appmenu")).click();
+        Thread.sleep(500L);
     }
     @When("^I enter the appname \"([^\"]*)\"$")
     public void I_enter_appname(String text) {
