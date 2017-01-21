@@ -1,0 +1,8 @@
+<table border="1">
+    <tr><th>id</th><th>Reviewer name</th><th>delete</th></tr>
+    <tr ng-repeat="reviewer in reviewers">
+        <td>{{reviewer.applicantId}}</td>
+        <td>{{reviewer.name}}</td>
+        <td><a href class="button" ng-click="deleteReviewer($index)">delete</a></td>
+    </tr>
+</table>

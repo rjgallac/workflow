@@ -9,12 +9,15 @@
         <td>{{application.jobDto.name}}</td>
         <td>{{application.applicantDto.name}}</td>
         <td width="100">{{application.status}}</td>
-        <td><a href class="button" ng-click="deleteApplication($index)">delete</a></td>
         <td>
-            <span ng-repeat="status in application.validStatuses">
-                <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
-            </span>
+            <a href class="button" ng-click="deleteApplication($index)">delete</a>
         </td>
+        <td>
+                                    <span ng-repeat="status in application.validStatuses">
+                                        <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
+                                    </span>
+        </td>
+        <td><p ng-repeat="history in application.applicationHistoryDtos">{{history.name}}-{{history.date}}</p></td>
     </tr>
     </tbody>
 </table>

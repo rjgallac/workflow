@@ -1,7 +1,13 @@
-<h2>+ Application</h2>
 <form ng-submit="addApplication()">
-    name:<input type="text" ng-model="application.name"/>
-    job id:<input type="text" ng-model="application.jobDto.jobId"/>
-    applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>
-    <input  class="button" type="submit"/>
+    name:<input type="text" ng-model="application.name" id="appname"/>
+    <label>
+        Job
+        <select ng-options="job.jobId as job.name for job in jobs track by job.jobId" ng-model="application.jobDto.jobId" id="jobselect"></select>
+    </label>
+    <!--job id:<input type="text" ng-model="application.jobDto.jobId"/>-->
+    <label>Applicant
+        <select ng-options="applicant.applicantId as applicant.name for applicant in applicants track by applicant.applicantId" ng-model="application.applicantDto.applicantId" id="applicantselect"></select>
+    </label>
+    <!--applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>-->
+    <input  class="button" type="submit" id="addapp"/>
 </form>

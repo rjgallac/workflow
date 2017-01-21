@@ -1,7 +1,7 @@
 angular.module('workflowApp')
     .controller('jobCtrl', function ($scope, applicationService, jobService, applicantService) {
         jobs = [];
-        jobDto = {};
+        $scope.jobDto = {};
 
         jobService.getJobs().then(function(data){
             $scope.jobs = data;
@@ -12,6 +12,7 @@ angular.module('workflowApp')
             $scope.jobs.splice(index,1);
         }
         $scope.addJob = function(){
+
             jobService.addJob($scope.jobDto).then(function(data){
                 $scope.jobs.push(data);
                 $scope.$emit("updateapps","appsupdate")

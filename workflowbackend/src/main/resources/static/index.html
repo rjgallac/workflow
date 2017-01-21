@@ -17,53 +17,20 @@
 <div class="row">
     <div class="large-12 column">
 <ul class="accordion" data-accordion>
+    <!-- APPLICANTIONS -->
     <li class="accordion-item is-active" data-accordion-item ng-controller="applicationCtrl">
         <a href="#" class="accordion-title"><h3 id="applicationAccord">Applications</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
                 <div class="large-9 column">
-                    <table border="1">
-                        <thead>
-                            <tr><th>id</th><th>app name</th><th>job name</th><th>applicant name</th><th width="100">status</th><th>delete</th><th>action</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="application in applications">
-                                <td>{{application.applicationId}}</td>
-                                <td>{{application.name}}</td>
-                                <td>{{application.jobDto.name}}</td>
-                                <td>{{application.applicantDto.name}}</td>
-                                <td width="100">{{application.status}}</td>
-                                <td>
-                                    <a href class="button" ng-click="deleteApplication($index)">delete</a>
-                                </td>
-                                <td>
-                                    <span ng-repeat="status in application.validStatuses">
-                                        <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
-                                    </span>
-                                </td>
-                                <td><p ng-repeat="history in application.applicationHistoryDtos">{{history.name}}-{{history.date}}</p></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div ng-include="'includes/applicationlist.html'"> </div>
                 </div>
                 <div class="large-3 column">
                     <ul class="accordion" data-accordion data-allow-all-closed="true">
                         <li class="accordion-item" data-accordion-item>
                             <a href="#" class="accordion-title"><h3 id="appmenu">+ Application</h3></a>
                             <div class="accordion-content" data-tab-content>
-                                <form ng-submit="addApplication()">
-                                    name:<input type="text" ng-model="application.name" id="appname"/>
-                                    <label>
-                                        Job
-                                        <select ng-options="job.jobId as job.name for job in jobs track by job.jobId" ng-model="application.jobDto.jobId" id="jobselect"></select>
-                                    </label>
-                                    <!--job id:<input type="text" ng-model="application.jobDto.jobId"/>-->
-                                    <label>Applicant
-                                        <select ng-options="applicant.applicantId as applicant.name for applicant in applicants track by applicant.applicantId" ng-model="application.applicantDto.applicantId" id="applicantselect"></select>
-                                    </label>
-                                    <!--applicant id:<input type="text" ng-model="application.applicantDto.applicantId"/>-->
-                                    <input  class="button" type="submit" id="addapp"/>
-                                </form>
+                                <div ng-include="'includes/addapplication.html'"> </div>
                             </div>
                         </li>
                     </ul>
@@ -71,116 +38,60 @@
             </div>
         </div>
     </li>
+    <!-- JOBS -->
     <li class="accordion-item" data-accordion-item ng-controller="jobCtrl">
         <a href="#" class="accordion-title"><h3 id="jobsaccord">Jobs</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
                 <div class="large-9 columns">
-                    <table border="1">
-                        <tr><th>id</th><th>job name</th><th>Status</th><th>delete</th><th>action</th></tr>
-                        <tr ng-repeat="job in jobs">
-                            <td>{{job.jobId}}</td>
-                            <td>{{job.name}}</td>
-                            <td>{{job.status}}</td>
-                            <td><a class="button" href ng-click="deleteJob($index)">delete</a></td>
-                            <td>
-                                <span ng-repeat="status in job.validStatuses">
-                                    <a href class="button" ng-click="updateJob($parent.$index, status)">{{status}}</a>
-                                </span>
-                            </td>
-                        </tr>
-                    </table>
+                    <div ng-include="'includes/joblist.html'"> </div>
                 </div>
                 <div class="small-2 large-3 columns">
-                    <h2 id="jobmenu">+ Job</h2>
-                    <form ng-submit="addJob()">
-                        name:<input type="text" ng-model="jobDto.name" id="jobinput" />
-                        <input type="submit" class="button" id="addjobbtn"/>
-                    </form>
+                    <div ng-include="'includes/addjob.html'"> </div>
                 </div>
             </div>
         </div>
     </li>
-
+    <!-- APPLICANTS -->
     <li class="accordion-item" data-accordion-item ng-controller="applicantCtrl">
         <a href="#" class="accordion-title"><h3 id="applicantaccord$">Applicants</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
                 <div class="large-9 columns">
-                    <table border="1">
-                        <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
-                        <tr ng-repeat="applicant in applicants">
-                            <td>{{applicant.applicantId}}</td>
-                            <td>{{applicant.name}}</td>
-                            <td><a href class="button" ng-click="deleteApplicant($index)">delete</a></td>
-                        </tr>
-                    </table>
+                    <div ng-include="'includes/applicantlist.html'"> </div>
                 </div>
                 <div class="small-2 large-3 columns">
-                    <h2 id="applicantform">+ Applicant</h2>
-                    <form ng-submit="addApplicant()">
-                        name:<input type="text" ng-model="applicantDto.name" id="applicantinput"/>
-                        <input class="button" type="submit" id="addapplicant"/>
-                    </form>
+                    <div ng-include="'includes/addapplicant.html'"> </div>
                 </div>
             </div>
         </div>
     </li>
-
-
+    <!-- REVIEWER -->
     <li class="accordion-item" data-accordion-item ng-controller="reviewerCtrl">
         <a href="#" class="accordion-title"><h3>Reviewer</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
                 <div class="large-9 columns">
-                    <table border="1">
-                        <tr><th>id</th><th>Reviewer name</th><th>delete</th></tr>
-                        <tr ng-repeat="reviewer in reviewers">
-                            <td>{{reviewer.applicantId}}</td>
-                            <td>{{reviewer.name}}</td>
-                            <td><a href class="button" ng-click="deleteReviewer($index)">delete</a></td>
-                        </tr>
-                    </table>
+                    <div ng-include="'includes/reviewerlist.html'"> </div>
                 </div>
                 <div class="small-2 large-3 columns">
-                    <h2>+ Reviewer</h2>
-                    <form ng-submit="addReviewer()">
-                        name:<input type="text" ng-model="reviewer.name"/>
-                        <input class="button" type="submit"/>
-                    </form>
+                    <div ng-include="'includes/addreviewer.html'"> </div>
                 </div>
             </div>
         </div>
     </li>
-
-
-
+    <!-- REVIEWS -->
     <li class="accordion-item" data-accordion-item ng-controller="reviewCtrl">
         <a href="#" class="accordion-title"><h3>Review</h3></a>
         <div class="accordion-content" data-tab-content>
             <div class="row">
                 <div class="large-9 columns">
-                    <table border="1">
-                        <tr><th>id</th><th>applicationId</th><th>reviewerId</th><th>delete</th></tr>
-                        <tr ng-repeat="review in reviews">
-                            <td>{{review.reviewId}}</td>
-                            <td>{{review.applicationId}}</td>
-                            <td>{{review.reviewerId}}</td>
-                            <td><a href class="button" ng-click="deleteReview($index)">delete</a></td>
-                        </tr>
-                    </table>
+                    <div ng-include="'includes/reviewslist.html'"> </div>
+
                 </div>
                 <div class="small-2 large-3 columns">
-                    <h2>+ Review</h2>
-                    <form ng-submit="addReview()">
-                        <!--applicationId:<input type="text" ng-model="review.applicationId"/>-->
-                        <label>Application:<select ng-options="application.applicationId as application.name for application in applications track by application.applicationId" ng-model="review.applicationId"></select>
-                        </label>
-                        <!--reviewer Id:<input type="text" ng-model="review.reviewerId"/>-->
-                        <label>Reviewer:<select ng-options="reviewer.reviewerId as reviewer.name for reviewer in reviewers track by reviewer.reviewerId" ng-model="review.reviewerId"></select>
-                        </label>
-                        <input class="button" type="submit"/>
-                    </form>
+                    <div ng-include="'includes/addreview.html'"> </div>
+
                 </div>
             </div>
         </div>

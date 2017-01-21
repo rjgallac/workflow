@@ -1,0 +1,9 @@
+<table border="1">
+    <tr><th>id</th><th>applicationId</th><th>reviewerId</th><th>delete</th></tr>
+    <tr ng-repeat="review in reviews">
+        <td>{{review.reviewId}}</td>
+        <td>{{review.applicationId}}</td>
+        <td>{{review.reviewerId}}</td>
+        <td><a href class="button" ng-click="deleteReview($index)">delete</a></td>
+    </tr>
+</table>

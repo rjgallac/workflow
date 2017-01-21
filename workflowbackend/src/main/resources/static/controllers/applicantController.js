@@ -1,7 +1,7 @@
 angular.module('workflowApp')
     .controller('applicantCtrl', function ($scope, applicationService, jobService, applicantService) {
             applicants = [];
-            applicantDto = {};
+            $scope.applicantDto = {};
             $scope.deleteApplicant = function(index){
                 applicantService.deleteApplicant($scope.applicants[index].applicantId);
                 $scope.applicants.splice(index,1);
