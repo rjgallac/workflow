@@ -10,7 +10,7 @@
         <td>{{application.applicantDto.name}}</td>
         <td width="100">{{application.status}}</td>
         <td>
-            <a href class="button" ng-click="deleteApplication($index)">delete</a>
+            <a href class="button fa fa-trash-o" ng-click="deleteApplication($index)">&nbsp;delete</a>
         </td>
         <td>
                                     <span ng-repeat="status in application.validStatuses">

@@ -5,6 +5,8 @@ angular.module('workflowApp')
         $scope.application.startState = "normal";
         jobs = [];
         applicants = [];
+        $scope.applicationMessages = [];
+        applicationsMessagesShow = false;
 
         $scope.getApplicants = function(){
             applicantService.getApplicants().then(function(data){
@@ -33,6 +35,8 @@ angular.module('workflowApp')
         $scope.addApplication = function(){
             applicationService.addApplication($scope.application).then(function(data){
                 $scope.applications.push(data);
+                $scope.applicationMessages.push("Application Added");
+                applicationsMessagesShow = true;
                 $scope.$emit("applicationsUpdate","appsupdate")
             });
         }
@@ -40,7 +44,14 @@ angular.module('workflowApp')
         $scope.deleteApplication = function(index){
             applicationService.deleteApplication($scope.applications[index].applicationId);
             $scope.applications.splice(index,1);
+            $scope.applicationMessages.push("Application deleted");
+            applicationsMessagesShow = true;
             $scope.$emit("applicationsUpdate","appsupdate")
+
+        }
+
+        $scope.removeappmessage = function(index){
+            $scope.applicationMessages.splice(index,1);
 
         }
 
