@@ -1,11 +1,10 @@
 package com.rob.workflow.model.jobstate;
 
-import com.rob.workflow.model.longworkflow.SlowStage1State;
 import com.rob.workflow.model.shortworkflow.StateException;
-import com.rob.workflow.model.shortworkflow.WorkflowState;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class JobStage1StateTest {
     @Test
@@ -34,7 +33,7 @@ public class JobStage1StateTest {
     public void getValidStatuses() throws Exception {
         JobState jobState = new JobState();
         jobState.setState(new JobStage1State());
-        assertEquals(new String[]{"next", "previous"},jobState.getState().getValidStatuses());
+        assertArrayEquals(new String[]{"next", "previous"},jobState.getState().getValidStatuses());
     }
 
 }

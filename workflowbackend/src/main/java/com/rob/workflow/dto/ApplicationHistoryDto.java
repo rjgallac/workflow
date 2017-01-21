@@ -4,6 +4,9 @@ public class ApplicationHistoryDto {
     private String name;
     private String date;
 
+    public ApplicationHistoryDto() {
+    }
+
     public ApplicationHistoryDto(String name, String date) {
         this.name = name;
         this.date = date;

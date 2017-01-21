@@ -18,20 +18,25 @@ public class JobServiceImpl implements JobService{
         this.jobRepository = jobRepository;
     }
 
-    public Optional<List<Job>> getJobs() {
+    public Optional getJobs() {
         return Optional.of((List)jobRepository.findAll());
     }
 
     public Job saveJob(Job job){
+        return jobRepository.save(job);
+    }
+
+    public Job actionJob(Job job, String action){
         job.restoreState();
-        if(job.getUpdateAction() != null){
-            if(job.getUpdateAction().equals("next"))
+        if(action != null){
+            if(action.equals("next"))
                 job.next();
-            if(job.getUpdateAction().equals("previous"))
+            if(action.equals("previous"))
                 job.previous();
         }
         job.setStateString();
         return jobRepository.save(job);
+
     }
 
     public void delete(Long id) {

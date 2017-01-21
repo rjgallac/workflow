@@ -57,7 +57,7 @@ angular.module('workflowApp')
 
         $scope.updateApplication = function(index, action){
             $scope.applications[index].updateAction = action;
-            applicationService.updateApplication($scope.applications[index]).then(function(data){
+            applicationService.actionApplication($scope.applications[index].applicationId, action).then(function(data){
                 $scope.applications[index] = data;
             })
         }

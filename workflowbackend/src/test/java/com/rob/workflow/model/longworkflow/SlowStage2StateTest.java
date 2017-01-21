@@ -4,7 +4,8 @@ import com.rob.workflow.model.shortworkflow.StateException;
 import com.rob.workflow.model.shortworkflow.WorkflowState;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class SlowStage2StateTest {
     @Test
@@ -46,7 +47,7 @@ public class SlowStage2StateTest {
     public void getValidStatuses() throws Exception {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new SlowStage2State());
-        assertEquals(new String[]{"accept", "reject", "withdraw"},workflowState.getState().getValidStatuses());
+        assertArrayEquals(new String[]{"accept", "reject", "withdraw"},workflowState.getState().getValidStatuses());
     }
 
 }

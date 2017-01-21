@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.doNothing;
@@ -41,17 +39,15 @@ public class JobControllerTest {
 
     @Test
     public void getJobs() throws Exception {
-        List<Job> jobsReturned = new ArrayList();
+        ArrayList<Job> jobsReturned = new ArrayList<>();
         jobsReturned.add(new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"));
-        when(jobService.getJobs()).thenReturn(Optional.ofNullable(jobsReturned));
+        when(jobService.getJobs()).thenReturn(Optional.of(jobsReturned));
         ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
         assertEquals(1, jobs.getBody().size());
     }
 
     @Test
     public void getJobsNoneFound() throws Exception {
-        List<Job> jobsReturned = new ArrayList();
-        jobsReturned.add(new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState"));
         when(jobService.getJobs()).thenReturn(Optional.empty());
         ResponseEntity<List<JobDto>> jobs = jobController.getJobs();
         assertEquals(HttpStatus.NOT_FOUND, jobs.getStatusCode());
@@ -67,7 +63,6 @@ public class JobControllerTest {
 
     @Test
     public void getJobNoneFound() throws Exception {
-        Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         when(jobService.getJob(1L)).thenReturn(Optional.empty());
         ResponseEntity<JobDto> job1 = jobController.getJob(1L);
         assertEquals(HttpStatus.NOT_FOUND, job1.getStatusCode());

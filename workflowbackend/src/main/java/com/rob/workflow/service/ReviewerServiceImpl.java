@@ -12,7 +12,7 @@ import java.util.Optional;
 public class ReviewerServiceImpl implements ReviewerService {
 
     @Autowired
-    private ReviewerRepository reviewerRepository;
+    private final ReviewerRepository reviewerRepository;
 
     public ReviewerServiceImpl(ReviewerRepository reviewerRepository) {
         this.reviewerRepository = reviewerRepository;
@@ -28,7 +28,7 @@ public class ReviewerServiceImpl implements ReviewerService {
         return reviewerRepository.findOne(reviewerId);
     }
 
-    public Optional<List<Reviewer>> getReviewers() {
+    public Optional getReviewers() {
         return Optional.of((List)reviewerRepository.findAll());
     }
 

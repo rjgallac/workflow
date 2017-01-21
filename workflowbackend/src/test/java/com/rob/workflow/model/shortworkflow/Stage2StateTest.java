@@ -2,7 +2,8 @@ package com.rob.workflow.model.shortworkflow;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by bob on 17/12/16.
@@ -53,7 +54,7 @@ public class Stage2StateTest {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new Stage2State());
         String[] expecteds = {"accept", "reject", "withdraw"};
-        assertEquals(expecteds, workflowState.getState().getValidStatuses());
+        assertArrayEquals(expecteds, workflowState.getState().getValidStatuses());
     }
 
 }

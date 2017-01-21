@@ -2,13 +2,13 @@ package com.rob.workflow.model.jobstate;
 
 import com.rob.workflow.model.shortworkflow.StateException;
 
-public class JobStage1State implements State {
+public class JobEndState implements State {
 
-    private static final String statusReadble = "Job Stage 1 State";
+    private static final String statusReadble = "Job End State";
 
     @Override
-    public void next(JobState jobState) {
-        jobState.setState(new JobEndState());
+    public void next(JobState jobState) throws StateException {
+        throw new StateException();
     }
 
     @Override
@@ -21,6 +21,6 @@ public class JobStage1State implements State {
     }
 
     public String[] getValidStatuses(){
-        return new String[]{"next", "previous"};
+        return new String[]{};
     }
 }

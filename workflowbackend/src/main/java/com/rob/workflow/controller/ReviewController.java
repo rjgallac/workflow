@@ -23,14 +23,18 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping(value = "/review")
 public class ReviewController {
 
-    @Autowired
-    ReviewServiceImpl reviewService;
+    private final ReviewServiceImpl reviewService;
+
+    private final ApplicationService applicationService;
+
+    private final ReviewerService reviewerService;
 
     @Autowired
-    ApplicationService applicationService;
-
-    @Autowired
-    ReviewerService reviewerService;
+    public ReviewController(ReviewServiceImpl reviewService, ApplicationService applicationService, ReviewerService reviewerService) {
+        this.reviewService = reviewService;
+        this.applicationService = applicationService;
+        this.reviewerService = reviewerService;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ReviewDto> saveReviewer(@RequestBody ReviewDto reviewDto){
@@ -40,20 +44,16 @@ public class ReviewController {
         Optional<Review> review1 = reviewService.saveReview(review);
         if(review1.isPresent()){
             ReviewDto reviewDto1 = ReviewMapper.toDto(review1.get());
-            return new ResponseEntity<ReviewDto>(reviewDto1, null, HttpStatus.OK);
+            return new ResponseEntity<>(reviewDto1, null, HttpStatus.OK);
         }else{
-            return new ResponseEntity<ReviewDto>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<ReviewDto>> getReviews(){
-        Optional<List<Review>> reviewers = reviewService.getReviews();
-        if(reviewers.isPresent()) {
-            return new ResponseEntity<>(reviewers.get().stream().map(ReviewMapper::toDto).collect(toList()), null, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(null,null, HttpStatus.NOT_FOUND);
-        }
+    public List<ReviewDto> getReviews(){
+        List<Review> reviews = reviewService.getReviews();
+        return reviews.stream().map(ReviewMapper::toDto).collect(toList());
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)

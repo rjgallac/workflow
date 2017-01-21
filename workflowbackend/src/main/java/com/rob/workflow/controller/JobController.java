@@ -53,11 +53,16 @@ public class JobController {
 
     @RequestMapping(value = "/job/{id}", method = RequestMethod.PUT)
     public ResponseEntity<JobDto> updateJobs(@RequestBody JobDto jobDto, @PathVariable Long id){
-        Job job = jobService.getJob(id).get();
+        Optional<Job> job = jobService.getJob(id);
         //invoker action dynamically.
-        Job save = jobService.saveJob(job);
-        return new ResponseEntity<>(toDto(save), null, HttpStatus.OK);
+        if(job.isPresent()) {
+            Job save = jobService.saveJob(job.get());
+            return new ResponseEntity<>(toDto(save), null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
+        }
     }
+
     @RequestMapping(value = "/job/{id}", method = RequestMethod.DELETE)
     public void deleteJob(@PathVariable Long id){
         jobService.delete(id);

@@ -25,7 +25,7 @@ public class JobStartStateTest {
     public void getValidStatuses() throws Exception {
         JobState jobState = new JobState();
         jobState.setState(new JobStartState());
-        assertEquals(new String[]{"next"}, jobState.getState().getValidStatuses());
+        assertArrayEquals(new String[]{"next"}, jobState.getState().getValidStatuses());
     }
 
     @Test

@@ -22,7 +22,7 @@ class ApplicationServiceImpl implements ApplicationService{
 
     private final JobRepository jobRepository;
 
-    private ApplicationHistoryService applicationHistoryService;
+    private final ApplicationHistoryService applicationHistoryService;
 
     @Autowired
     ApplicationServiceImpl(ApplicationRepository applicationRepository, ApplicantRepository applicantRepository, JobRepository jobRepository, ApplicationHistoryService applicationHistoryService) {
@@ -52,27 +52,33 @@ class ApplicationServiceImpl implements ApplicationService{
 
     public Application save(Application application) {
 
+
+        return applicationRepository.save(application);
+    }
+
+    public Application actionApplication(Application application, String updateAction){
+
         application.restoreState();
-        if(application.getUpdateAction() != null){
-            if(application.getUpdateAction().equals("accept")) {
+        if(updateAction != null){
+            if(updateAction.equals("accept")) {
                 application.next();
                 ApplicationHistory accept = applicationHistoryService.addHistory(new ApplicationHistory("accept", LocalDateTime.now()));
                 application.addHistory(accept);
             }
-            if(application.getUpdateAction().equals("reject")) {
+            if(updateAction.equals("reject")) {
                 application.reject();
                 ApplicationHistory reject = applicationHistoryService.addHistory(new ApplicationHistory("reject", LocalDateTime.now()));
                 application.addHistory(reject);
             }
-            if(application.getUpdateAction().equals("withdraw")) {
+            if(updateAction.equals("withdraw")) {
                 application.withdraw();
                 ApplicationHistory withdraw = applicationHistoryService.addHistory(new ApplicationHistory("withdraw", LocalDateTime.now()));
                 application.addHistory(withdraw);
             }
         }
         application.setStateString();
-
-        return applicationRepository.save(application);
+        applicationRepository.save(application);
+        return application;
     }
 
     public void deleteOne(Long id){

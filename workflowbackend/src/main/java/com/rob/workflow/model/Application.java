@@ -48,11 +48,6 @@ public class Application {
         this.applicant = applicant;
         this.workflowState = new WorkflowState();
         this.applicationHistory = new ArrayList<>();
-//        if(startState.equals("slow")){
-//            this.workflowState.setState(new SlowStartState());
-//        }else{
-//            this.workflowState.setState(new StartState());
-//        }
         this.workflowStateString = workflowState.getState().getClass().getName();
     }
 

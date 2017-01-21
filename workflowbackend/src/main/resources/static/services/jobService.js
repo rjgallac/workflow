@@ -46,4 +46,18 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+        this.updateActionJob = function(id, updateAction){
+            var defer = $q.defer();
+            data = {"updateAction":updateAction}
+        console.log(id);
+
+            $http.put('/actionjob/'+id, data)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
     });

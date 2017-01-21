@@ -2,6 +2,7 @@ package com.rob.workflow.model.shortworkflow;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class EndStateTest {
@@ -48,7 +49,7 @@ public class EndStateTest {
         WorkflowState workflowState = new WorkflowState();
         workflowState.setState(new EndState());
         String[] expecteds = {"reject", "withdraw", "previous"};
-        assertEquals(expecteds, workflowState.getState().getValidStatuses());
+        assertArrayEquals(expecteds, workflowState.getState().getValidStatuses());
     }
 
 }
