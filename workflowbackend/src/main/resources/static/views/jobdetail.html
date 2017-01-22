@@ -29,8 +29,8 @@
             <tr><th>Application Name</th><th>Applicant</th><th>Application Status</th></tr>
             <tr ng-repeat="application in job.applicationDtoList">
 
-                <td>{{application.name}}</td>
-                <td>{{application.applicantDto.name}}</td>
+                <td><a href="/#/applicationdetail/{{application.applicationId}}">{{application.name}}</a></td>
+                <td><a href="">{{application.applicantDto.name}}</a></td>
                 <td>{{application.status}}</td>
             </tr>
         </table>

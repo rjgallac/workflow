@@ -11,15 +11,18 @@ public class ReviewDto {
 
     private int score;
 
+    private String reviewerName;
+
     public ReviewDto() {
     }
 
-    public ReviewDto(Long reviewId, Long applicationId, Long reviewerId, int stage, int score) {
+    public ReviewDto(Long reviewId, Long applicationId, Long reviewerId, int stage, int score, String reviewerName) {
         this.reviewId = reviewId;
         this.applicationId = applicationId;
         this.reviewerId = reviewerId;
         this.stage = stage;
         this.score = score;
+        this.reviewerName = reviewerName;
     }
 
     public Long getReviewId() {
@@ -40,5 +43,9 @@ public class ReviewDto {
 
     public int getScore() {
         return score;
+    }
+
+    public String getReviewerName() {
+        return reviewerName;
     }
 }

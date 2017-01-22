@@ -4,6 +4,8 @@ angular.module('workflowApp')
         $scope.application = {};
 
         applicationService.getApplication($scope.applicationId).then(function(data){
+            console.log(data);
+            console.log("here");
             $scope.application = data
         })
     });
