@@ -1,79 +1,39 @@
 <html ng-app="workflowApp">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
+        <link rel='stylesheet' href='css/main.css'/>
+        <title>workflow</title>
+        <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    </head>
+    <body  class="container">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel='stylesheet' href='css/foundation/css/foundation.css'/>
-    <link rel='stylesheet' href='css/main.css'/>
-    <title>workflow</title>
-    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+        <div ng-view></div>
 
-    <style>
-        .message{
-          transition: all linear 0.5s;
-          background-color: lightblue;
-          height: 30px;
-          padding:5px;
-          width: 100%;
-          position: relative;
-          top: 0;
-          left: 0;
-        }
-    </style>
-</head>
-<body  class="container">
-<div class="row">
-    <div class="small-2 large-12 columns">
-        <h1>Workflow</h1>
-    </div>
-</div>
 
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
-    <div class="title-bar-title">Menu</div>
-</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+        <script src="css/foundation/js/vendor/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+        <script src="css/foundation/js/vendor/foundation.js"></script>
+        <script src="app.js"></script>
+        <script src="services/reviewerService.js"></script>
+        <script src="services/reviewService.js"></script>
+        <script src="services/applicantService.js"></script>
+        <script src="services/applicationService.js"></script>
+        <script src="services/jobService.js"></script>
+        <script src="controllers/homeController.js"></script>
+        <script src="controllers/reviewerController.js"></script>
+        <script src="controllers/reviewController.js"></script>
+        <script src="controllers/jobController.js"></script>
+        <script src="controllers/applicationController.js"></script>
+        <script src="controllers/applicantController.js"></script>
 
-<div class="row">
-    <div class="small-2 large-12 columns">
-        <div class="top-bar" id="example-menu">
-            <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li class="menu-text">Job Board</li>
-                    <li><a href="#/applications" id="applicationmenu">Applications</a></li>
-                    <li><a href="#/jobs" id="jobmenu">Jobs</a></li>
-                    <li><a href="#/applicants" id="applicantmenu">Applicants</a></li>
-                    <li><a href="#/reviewers" id="reviewersmenu">Reviewers</a></li>
-                    <li><a href="#/reviews" id="reviewsmenu">Reviews</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div ng-view></div>
-
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-<script src="css/foundation/js/vendor/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
-<script src="css/foundation/js/vendor/foundation.js"></script>
-<script src="app.js"></script>
-<script src="services/reviewerService.js"></script>
-<script src="services/reviewService.js"></script>
-<script src="services/applicantService.js"></script>
-<script src="services/applicationService.js"></script>
-<script src="services/jobService.js"></script>
-<script src="controllers/homeController.js"></script>
-<script src="controllers/reviewerController.js"></script>
-<script src="controllers/reviewController.js"></script>
-<script src="controllers/jobController.js"></script>
-<script src="controllers/applicationController.js"></script>
-<script src="controllers/applicantController.js"></script>
-
-<script>
-  $(document).foundation();
-</script>
-</body>
+        <script>
+          $(document).foundation();
+        </script>
+    </body>
 </html>
