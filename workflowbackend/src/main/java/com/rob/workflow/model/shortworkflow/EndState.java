@@ -42,6 +42,6 @@ public class EndState implements State {
     }
 
     public String[] getValidStatuses(){
-        return new String[]{"reject", "withdraw", "previous"};
+        return new String[]{};
     }
 }

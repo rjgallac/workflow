@@ -22,103 +22,36 @@
         }
     </style>
 </head>
-<body  class="container"  ng-controller="mainCtrl">
+<body  class="container">
 <div class="row">
     <div class="small-2 large-12 columns">
         <h1>Workflow</h1>
     </div>
 </div>
+
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
 <div class="row">
-    <div class="large-12 column">
-<ul class="accordion" data-accordion>
-    <!-- APPLICANTIONS -->
-    <li class="accordion-item is-active" data-accordion-item ng-controller="applicationCtrl">
-        <a href="#" class="accordion-title"><h3 id="applicationAccord">Applications</h3></a>
-        <div class="accordion-content" data-tab-content>
-            <div class="row">
-                <div class="large-9 column">
-                    <div id="applicationsMessages" ng-hide="applicationsMessagesShow">
-                            <p ng-repeat="message in applicationMessages track by $index">
-                                <a href="" ng-click="removeappmessage($index)" class="message fa fa-window-close" aria-hidden="true"> {{message}}</a>
-                            </p>
-                    </div>
-                    <div ng-include="'includes/applicationlist.html'"> </div>
-                </div>
-                <div class="large-3 column">
-                    <ul class="accordion" data-accordion data-allow-all-closed="true">
-                        <li class="accordion-item" data-accordion-item>
-                            <a href="#" class="accordion-title"><h3 id="appmenu">+ Application</h3></a>
-                            <div class="accordion-content" data-tab-content>
-                                <div ng-include="'includes/addapplication.html'"> </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+    <div class="small-2 large-12 columns">
+        <div class="top-bar" id="example-menu">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="menu-text">Job Board</li>
+                    <li><a href="#/applications" id="applicationmenu">Applications</a></li>
+                    <li><a href="#/jobs" id="jobmenu">Jobs</a></li>
+                    <li><a href="#/applicants" id="applicantmenu">Applicants</a></li>
+                    <li><a href="#/reviewers" id="reviewersmenu">Reviewers</a></li>
+                    <li><a href="#/reviews" id="reviewsmenu">Reviews</a></li>
+                </ul>
             </div>
         </div>
-    </li>
-    <!-- JOBS -->
-    <li class="accordion-item" data-accordion-item ng-controller="jobCtrl">
-        <a href="#" class="accordion-title"><h3 id="jobsaccord">Jobs</h3></a>
-        <div class="accordion-content" data-tab-content>
-            <div class="row">
-                <div class="large-9 columns">
-                    <div ng-include="'includes/joblist.html'"> </div>
-                </div>
-                <div class="small-2 large-3 columns">
-                    <div ng-include="'includes/addjob.html'"> </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <!-- APPLICANTS -->
-    <li class="accordion-item" data-accordion-item ng-controller="applicantCtrl">
-        <a href="#" class="accordion-title"><h3 id="applicantaccord$">Applicants</h3></a>
-        <div class="accordion-content" data-tab-content>
-            <div class="row">
-                <div class="large-9 columns">
-                    <div ng-include="'includes/applicantlist.html'"> </div>
-                </div>
-                <div class="small-2 large-3 columns">
-                    <div ng-include="'includes/addapplicant.html'"> </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <!-- REVIEWER -->
-    <li class="accordion-item" data-accordion-item ng-controller="reviewerCtrl">
-        <a href="#" class="accordion-title"><h3>Reviewer</h3></a>
-        <div class="accordion-content" data-tab-content>
-            <div class="row">
-                <div class="large-9 columns">
-                    <div ng-include="'includes/reviewerlist.html'"> </div>
-                </div>
-                <div class="small-2 large-3 columns">
-                    <div ng-include="'includes/addreviewer.html'"> </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <!-- REVIEWS -->
-    <li class="accordion-item" data-accordion-item ng-controller="reviewCtrl">
-        <a href="#" class="accordion-title"><h3>Review</h3></a>
-        <div class="accordion-content" data-tab-content>
-            <div class="row">
-                <div class="large-9 columns">
-                    <div ng-include="'includes/reviewslist.html'"> </div>
-
-                </div>
-                <div class="small-2 large-3 columns">
-                    <div ng-include="'includes/addreview.html'"> </div>
-
-                </div>
-            </div>
-        </div>
-    </li>
-
-
-</ul>
     </div>
+</div>
+<div ng-view></div>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
@@ -132,7 +65,7 @@
 <script src="services/applicantService.js"></script>
 <script src="services/applicationService.js"></script>
 <script src="services/jobService.js"></script>
-<script src="controllers/mainController.js"></script>
+<script src="controllers/homeController.js"></script>
 <script src="controllers/reviewerController.js"></script>
 <script src="controllers/reviewController.js"></script>
 <script src="controllers/jobController.js"></script>

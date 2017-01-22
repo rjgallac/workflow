@@ -18,14 +18,12 @@ angular.module('workflowApp')
         $scope.addReviewer = function(){
             reviewerService.addReviewer($scope.reviewer).then(function(data){
                 $scope.reviewers.push(data);
-                $scope.$emit("reviewerUpdated","appsupdate")
             });
         }
 
         $scope.deleteReviewer = function(index){
             reviewerService.deleteReviewer($scope.reviewers[index].reviewerId).then(function(data){
                 $scope.reviewers.splice(index,1);
-                $scope.$emit("reviewerUpdated","appsupdate")
             });
         }
 

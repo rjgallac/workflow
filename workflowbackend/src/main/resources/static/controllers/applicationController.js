@@ -19,12 +19,6 @@ angular.module('workflowApp')
                 $scope.jobs = data;
             })
         }
-        $scope.$on("jobsUpdated", function(evt, data){
-            $scope.getJobs();
-        })
-        $scope.$on("updateApplicants", function(evt, data){
-            $scope.getApplicants();
-        })
 
         $scope.getJobs();
         $scope.getApplicants();
@@ -37,7 +31,6 @@ angular.module('workflowApp')
                 $scope.applications.push(data);
                 $scope.applicationMessages.push("Application Added");
                 applicationsMessagesShow = true;
-                $scope.$emit("applicationsUpdate","appsupdate")
             });
         }
 
@@ -46,13 +39,10 @@ angular.module('workflowApp')
             $scope.applications.splice(index,1);
             $scope.applicationMessages.push("Application deleted");
             applicationsMessagesShow = true;
-            $scope.$emit("applicationsUpdate","appsupdate")
-
         }
 
         $scope.removeappmessage = function(index){
             $scope.applicationMessages.splice(index,1);
-
         }
 
         $scope.updateApplication = function(index, action){

@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="large-9 column">
+        <div id="applicationsMessages" ng-hide="applicationsMessagesShow">
+            <p ng-repeat="message in applicationMessages track by $index">
+                <a href="" ng-click="removeappmessage($index)" class="message fa fa-window-close" aria-hidden="true"> {{message}}</a>
+            </p>
+        </div>
+        <div ng-include="'includes/applicationlist.html'"> </div>
+    </div>
+    <div class="large-3 column">
+        <div ng-include="'includes/addapplication.html'"> </div>
+   </div>
+</div>
