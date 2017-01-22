@@ -12,6 +12,17 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+        this.getJob = function(jobId) {
+            var defer = $q.defer();
+            $http.get('/job/'+jobId)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
         this.deleteJob = function(id) {
             var defer = $q.defer();
             $http.delete('/job/'+id)

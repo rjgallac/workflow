@@ -1,8 +1,7 @@
 <table border="1">
-    <tr><th>id</th><th>job name</th><th>Status</th><th>delete</th><th>action</th></tr>
+    <tr><th>job name</th><th>Status</th><th>delete</th><th>action</th></tr>
     <tr ng-repeat="job in jobs">
-        <td>{{job.jobId}}</td>
-        <td>{{job.name}}</td>
+        <td><a ng-href="/#/jobdetail/{{job.jobId}}">{{job.name}}</a></td>
         <td>{{job.status}}</td>
         <td><a class="button" href ng-click="deleteJob($index)">delete</a></td>
         <td>

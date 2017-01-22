@@ -28,9 +28,17 @@ angular
                 templateUrl: 'views/jobs.html',
                 controller: 'jobCtrl'
             })
+            .when('/jobdetail/:param', {
+                templateUrl: 'views/jobdetail.html',
+                controller: 'jobDetailCtrl'
+            })
             .when('/applicants', {
                 templateUrl: 'views/applicants.html',
                 controller: 'applicantCtrl'
+            })
+            .when('/applicantdetail/:param', {
+                templateUrl: 'views/applicantdetail.html',
+                controller: 'applicantDetailCtrl'
             })
             .when('/reviewers', {
                 templateUrl: 'views/reviewers.html',

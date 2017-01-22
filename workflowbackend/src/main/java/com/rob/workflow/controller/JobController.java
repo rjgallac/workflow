@@ -1,14 +1,20 @@
 package com.rob.workflow.controller;
 
+import com.rob.workflow.dto.ApplicationDto;
+import com.rob.workflow.dto.JobAndApplicationsDto;
 import com.rob.workflow.dto.JobDto;
+import com.rob.workflow.mapper.ApplicationMapper;
 import com.rob.workflow.mapper.JobMapper;
+import com.rob.workflow.model.Application;
 import com.rob.workflow.model.Job;
+import com.rob.workflow.repository.ApplicationRepository;
 import com.rob.workflow.service.JobServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,9 +27,12 @@ public class JobController {
 
     private final JobServiceImpl jobService;
 
+    private final ApplicationRepository applicationRepository;
+
     @Autowired
-    public JobController(JobServiceImpl jobService) {
+    public JobController(JobServiceImpl jobService, ApplicationRepository applicationRepository) {
         this.jobService = jobService;
+        this.applicationRepository = applicationRepository;
     }
 
 
@@ -42,10 +51,19 @@ public class JobController {
         }
     }
     @RequestMapping(value = "/job/{id}", method = RequestMethod.GET)
-    public ResponseEntity<JobDto> getJob(@PathVariable Long id){
+    public ResponseEntity<JobAndApplicationsDto> getJob(@PathVariable Long id){
         Optional<Job> job = jobService.getJob(id);
+
+        List<Application> byJob = applicationRepository.findByJob(job);
+
         if(job.isPresent()) {
-            return new ResponseEntity<>(toDto(job.get()), null, HttpStatus.OK);
+            JobDto jobDto = toDto(job.get());
+            List<ApplicationDto> applicationDtos = new ArrayList<>();
+            for (Application application : byJob) {
+                applicationDtos.add(ApplicationMapper.toDto(application));
+            }
+            JobAndApplicationsDto jobAndApplicationsDto = new JobAndApplicationsDto(jobDto, applicationDtos);
+            return new ResponseEntity<>(jobAndApplicationsDto, null, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
         }

@@ -1,8 +1,7 @@
 <table border="1">
-    <tr><th>id</th><th>applicant name</th><th>delete</th></tr>
+    <tr><th>applicant name</th><th>delete</th></tr>
     <tr ng-repeat="applicant in applicants">
-        <td>{{applicant.applicantId}}</td>
-        <td>{{applicant.name}}</td>
+        <td><a ng-href="/#/applicantdetail/{{applicant.applicantId}}">{{applicant.name}}</a></td>
         <td><a href class="button" ng-click="deleteApplicant($index)">delete</a></td>
     </tr>
 </table>

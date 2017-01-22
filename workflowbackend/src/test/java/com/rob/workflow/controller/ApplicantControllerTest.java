@@ -1,5 +1,6 @@
 package com.rob.workflow.controller;
 
+import com.rob.workflow.dto.ApplicantAndApplicationsDto;
 import com.rob.workflow.dto.ApplicantDto;
 import com.rob.workflow.model.Applicant;
 import com.rob.workflow.service.ApplicantServiceImpl;
@@ -53,7 +54,7 @@ public class ApplicantControllerTest {
         List<Applicant> applicants = new ArrayList<>();
         applicants.add(new Applicant(1L, "test"));
         when(applicantService.getApplicant(1L)).thenReturn(Optional.of(new Applicant(1L, "test")));
-        ResponseEntity<ApplicantDto> applicant = applicantController.getApplicant(1L);
+        ResponseEntity<ApplicantAndApplicationsDto> applicant = applicantController.getApplicant(1L);
         assertEquals(HttpStatus.OK, applicant.getStatusCode());
     }
 
@@ -62,7 +63,7 @@ public class ApplicantControllerTest {
         List<Applicant> applicants = new ArrayList<>();
         applicants.add(new Applicant(1L, "test"));
         when(applicantService.getApplicant(1L)).thenReturn(Optional.empty());
-        ResponseEntity<ApplicantDto> applicant = applicantController.getApplicant(1L);
+        ResponseEntity<ApplicantAndApplicationsDto> applicant = applicantController.getApplicant(1L);
         assertEquals(HttpStatus.NOT_FOUND, applicant.getStatusCode());
     }
 

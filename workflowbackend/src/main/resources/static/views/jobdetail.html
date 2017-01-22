@@ -1,0 +1,42 @@
+<div ng-include="'../includes/menu.html'"> </div>
+
+<div class="row">
+    <div class="large-9 column">
+        <nav aria-label="You are here:" role="navigation">
+            <ul class="breadcrumbs">
+                <li><a ng-href="/#/">Home</a></li>
+                <li><a ng-href="/#/applicants">applicants</a></li>
+                <li><span class="show-for-sr">Current: </span> applicant {{applicantId}}</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-9 column">
+        <table>
+            <tr>
+                <td><strong>ID</strong></td>
+                <td>{{job.jobDto.jobId}}</td>
+            </tr>
+            <tr>
+                <td><strong>Job Name</strong></td>
+                <td>{{job.jobDto.name}}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr><th>Application Name</th><th>Applicant</th><th>Application Status</th></tr>
+            <tr ng-repeat="application in job.applicationDtoList">
+
+                <td>{{application.name}}</td>
+                <td>{{application.applicantDto.name}}</td>
+                <td>{{application.status}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="large-3 column">
+
+    </div>
+</div>

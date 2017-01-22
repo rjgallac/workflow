@@ -1,5 +1,6 @@
 package com.rob.workflow.controller;
 
+import com.rob.workflow.dto.JobAndApplicationsDto;
 import com.rob.workflow.dto.JobDto;
 import com.rob.workflow.model.Job;
 import com.rob.workflow.service.JobServiceImpl;
@@ -57,14 +58,14 @@ public class JobControllerTest {
     public void getJob() throws Exception {
         Job job = new Job(1L, "test", "com.rob.workflow.model.shortworkflow.StartState");
         when(jobService.getJob(1L)).thenReturn(Optional.of(job));
-        ResponseEntity<JobDto> job1 = jobController.getJob(1L);
-        assertEquals("test", job1.getBody().getName());
+        ResponseEntity<JobAndApplicationsDto> job1 = jobController.getJob(1L);
+        assertEquals("test", job1.getBody().getJobDto().getName());
     }
 
     @Test
     public void getJobNoneFound() throws Exception {
         when(jobService.getJob(1L)).thenReturn(Optional.empty());
-        ResponseEntity<JobDto> job1 = jobController.getJob(1L);
+        ResponseEntity<JobAndApplicationsDto> job1 = jobController.getJob(1L);
         assertEquals(HttpStatus.NOT_FOUND, job1.getStatusCode());
     }
 
