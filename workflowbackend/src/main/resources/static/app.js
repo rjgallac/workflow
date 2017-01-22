@@ -20,6 +20,10 @@ angular
                 templateUrl: 'views/applications.html',
                 controller: 'applicationCtrl'
             })
+            .when('/applicationdetail/:param', {
+                templateUrl: 'views/applicationdetail.html',
+                controller: 'applicationDetailCtrl'
+            })
             .when('/jobs', {
                 templateUrl: 'views/jobs.html',
                 controller: 'jobCtrl'

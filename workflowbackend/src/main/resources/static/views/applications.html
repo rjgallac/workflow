@@ -2,6 +2,19 @@
 
 <div class="row">
     <div class="large-9 column">
+        <nav aria-label="You are here:" role="navigation">
+            <ul class="breadcrumbs">
+                <li><a href="/#/">Home</a></li>
+                <li>
+                    <span class="show-for-sr">Current: </span> applications
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-9 column">
         <div id="applicationsMessages" ng-hide="applicationsMessagesShow">
             <p ng-repeat="message in applicationMessages track by $index">
                 <a href="" ng-click="removeappmessage($index)" class="message fa fa-window-close" aria-hidden="true"> {{message}}</a>

@@ -1,0 +1,62 @@
+<div ng-include="'../includes/menu.html'"> </div>
+
+<div class="row">
+    <div class="large-9 column">
+        <nav aria-label="You are here:" role="navigation">
+            <ul class="breadcrumbs">
+                <li><a ng-href="/#/">Home</a></li>
+                <li><a ng-href="/#/applications">applications</a></li>
+                <li>
+                    <span class="show-for-sr">Current: </span> application {{applicationId}}
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-9 column">
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>{{application.applicationId}}</td>
+            </tr>
+            <tr>
+                <td>Application Name</td>
+                <td>{{application.name}}</td>
+            </tr>
+            <tr>
+                <td>Job</td>
+                <td>{{application.jobDto.name}}</td>
+            </tr>
+            <tr>
+                <td>Applicant</td>
+                <td>{{application.applicantDto.name}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td width="100">{{application.status}}</td>
+            </tr>
+            <tr>
+                <td>delete</td>
+                <td><a href class="button fa fa-trash-o" ng-click="deleteApplication($index)">&nbsp;delete</a></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>
+                    <span ng-repeat="status in application.validStatuses">
+                        <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>History</td>
+                <td><p ng-repeat="history in application.applicationHistoryDtos">{{history.name}}-{{history.date}}</p></td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="large-3 column">
+
+    </div>
+</div>

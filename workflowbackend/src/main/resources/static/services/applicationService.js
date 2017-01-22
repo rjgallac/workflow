@@ -12,6 +12,19 @@ angular.module('workflowApp')
                 });
             return defer.promise;
         }
+
+        this.getApplication = function(applicationId) {
+            var defer = $q.defer();
+            $http.get('/application/'+applicationId)
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(err, status) {
+                    defer.reject(err);
+                });
+            return defer.promise;
+        }
+
         this.addApplication = function(data) {
             var defer = $q.defer();
             $http.post('/application/', data)

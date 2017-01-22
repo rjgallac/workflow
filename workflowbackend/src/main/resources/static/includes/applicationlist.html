@@ -5,7 +5,7 @@
     <tbody>
     <tr ng-repeat="application in applications">
         <td>{{application.applicationId}}</td>
-        <td>{{application.name}}</td>
+        <td><a href="/#/applicationdetail/{{application.applicationId}}">{{application.name}}</a></td>
         <td>{{application.jobDto.name}}</td>
         <td>{{application.applicantDto.name}}</td>
         <td width="100">{{application.status}}</td>
@@ -17,7 +17,6 @@
                 <a href class="button" ng-click="updateApplication($parent.$index, status)">{{status}}</a>
             </span>
         </td>
-        <td><p ng-repeat="history in application.applicationHistoryDtos">{{history.name}}-{{history.date}}</p></td>
     </tr>
     </tbody>
 </table>
